@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bitcoin Charts Markets</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="styles/main.css">
+
+  </head>
+  <body>
+    <header class="app-bar promote-layer">
+      <div class="app-bar-container">
+        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+        <h1 class="logo">Bitcoin<strong>Charts Markets</strong></h1>
+        <section class="app-bar-actions">
+        <!-- Put App Bar Buttons Here -->
+        <!-- e.g <button><i class="icon icon-star"></i></button> -->
+        </section>
+      </div>
+    </header>
+
+    <nav class="navdrawer-container promote-layer">
+      <h4>Navigation</h4>
+      <ul data-bind="foreach:fiatCurrency">
+	    <li><a href='#' data-bind="click: $parent.setData"><span data-bind="text: name"></span></a></li>
+      </ul>
+    </nav>
+
+	<main>
+		<b>Currency</b> : <span data-bind="text: currency"></span>
+		<table class="table" style="font-size:12px">
+			<thead>
+				<tr class="tableRow">
+					<td class="tableHeader"> Symbol </td>
+					<td class="tableHeader"> Latest&nbsp;Price </td>
+					<td class="tableHeader"> Average </td>
+					<td class="tableHeader"> Volume </td>
+					<td class="tableHeader" style="width:1px; display:none;"> </td>
+				</tr>
+			</thead>
+			<tbody data-bind="foreach:exchange">
+				<tr class="tableRow">
+					<td class="tableCell" data-bind="text: symbol"> </td>
+					<td class="tableCell" data-bind="text: ask"> </td>
+					<td class="tableCell" data-bind="text: avg"> </td>
+					<td class="tableCell" data-bind="text: volume"> </td>
+					<td class="tableCell" style="width:1px; display:none;"> </td>
+				</tr>
+			</tbody>	
+		</table>
+	</main>
+    <!-- build:js scripts/main.min.js -->
+	<script src="scripts/001_WebHelper.js"></script>
+	<script src="scripts/002_PrefsHelper.js"></script>
+	<script src="scripts/998_app.js"></script>
+	<script src="scripts/999_main.js"></script>
+	<script src="libs/jquery.js"></script>
+	<script src="libs/knockout.js"></script>
+	
+	<script type="text/javascript">
+
+		function VM(){
+			var self = this;
+			
+			self.currency = ko.observable(""); // Initially blank
+			self.data = [];
+			self.fiatCurrency = ko.observableArray([]);
+			
+			self.exchange = ko.observableArray([]);
+			
+			self.addCurrency = function(currency){
+				self.fiatCurrency.push({name : currency});
+			};
+					
+			self.setExchangeData = function(key){
+				self.exchange(self.data[key]);
+			};
+			
+			self.setData = function(data, event){
+				// set currency
+				var fiat = data["name"];
+				self.currency(fiat);
+				self.setExchangeData(fiat);
+			};
+
+		};
+		
+		var viewModel = new VM();
+		
+		$(function() {
+		
+				viewModel.currency("USD"); // Text appears
+				$.ajax({
+					url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
+					dataType : 'jsonp',
+					crossDomain : true,
+					async: true,
+					success : function(data){
+						viewModel.data = data;
+						$.each(data, function(k,v){
+							viewModel.addCurrency(k);
+						});
+						
+						viewModel.setExchangeData("USD");
+						ko.applyBindings(viewModel);
+						
+					},
+					error : function(){
+						alert("An error occured while fetching data! Please ensure you wifi or mobile data is on.");
+					}
+				});	
+		});
+
+	</script>
+    <!-- endbuild -->
+  </body>
+</html>
