@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.3",
   "name": "Bitcoin Markets",
   "launch_path": "/index.html",
   "description": "An application to monitor BTC prices around the world.",
