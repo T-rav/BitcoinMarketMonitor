@@ -35,7 +35,7 @@
   
     <header class="app-bar promote-layer">
       <div class="app-bar-container">
-        <span style="margin-left:-10px;">
+        <span style="margin-left:-11px;">
 			<h2 class="logo">Bitcoin<strong>Markets</strong></h2>
 		</span>
 		<span style="float:right;">
@@ -51,9 +51,11 @@
 		navbar-collapse collapse navbar-inverse-collapse
 	-->
 
-	<nav class="navdrawer-container promote-layer">
-	  <h4>Currencies</h4>
-	  <ul data-bind="foreach:fiatCurrency">
+	<nav class="navdrawer-container promote-layer navbar navbar-inverse">
+	  <span style="margin-left:-11px;">
+		<h4 class="logo">Currencies</h4>
+	  </span>
+	  <ul class="nav navbar-nav" data-bind="foreach:fiatCurrency">
 		<li><a href='#' data-bind="click: $parent.setData"><span data-bind="text: name"></span></a></li>
 	  </ul>
 	</nav>
