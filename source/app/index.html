@@ -27,31 +27,40 @@
     -->
 
     <!-- Page styles -->
-    <link rel="stylesheet" href="styles/main.css">
-
+    <!--<link rel="stylesheet" href="styles/main.css">-->
+	<link href="styles/bootstrap.min.css" rel="stylesheet">
+	
   </head>
   <body>
+  
     <header class="app-bar promote-layer">
       <div class="app-bar-container">
-        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
-        <h1 class="logo">Bitcoin<strong>Charts Markets</strong></h1>
+        <span style="margin-left:-10px;">
+			<h2 class="logo">Bitcoin<strong>Markets</strong></h2>
+		</span>
+		<span style="float:right;">
+			<button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+		</span>
         <section class="app-bar-actions">
-        <!-- Put App Bar Buttons Here -->
-        <!-- e.g <button><i class="icon icon-star"></i></button> -->
         </section>
       </div>
     </header>
+	
+	<!--
+		navdrawer-container promote-layer
+		navbar-collapse collapse navbar-inverse-collapse
+	-->
 
-    <nav class="navdrawer-container promote-layer">
-      <h4>Navigation</h4>
-      <ul data-bind="foreach:fiatCurrency">
-	    <li><a href='#' data-bind="click: $parent.setData"><span data-bind="text: name"></span></a></li>
-      </ul>
-    </nav>
+	<nav class="navdrawer-container promote-layer">
+	  <h4>Currencies</h4>
+	  <ul data-bind="foreach:fiatCurrency">
+		<li><a href='#' data-bind="click: $parent.setData"><span data-bind="text: name"></span></a></li>
+	  </ul>
+	</nav>
 
 	<main>
-		<b>Currency</b> : <span data-bind="text: currency"></span>
-		<table class="table" style="font-size:12px">
+		<div style="margin-left:5px;"><b>Currency</b> : <span data-bind="text: currency"></span></div>
+		<table class="table table-striped table-hover" style="font-size:12px">
 			<thead>
 				<tr class="tableRow">
 					<td class="tableHeader"> Symbol </td>
@@ -61,8 +70,8 @@
 					<td class="tableHeader" style="width:1px; display:none;"> </td>
 				</tr>
 			</thead>
-			<tbody data-bind="foreach:exchange">
-				<tr class="tableRow">
+			<tbody data-bind="foreach:exchangeState">
+				<tr>
 					<td class="tableCell" data-bind="text: symbol"> </td>
 					<td class="tableCell" data-bind="text: ask"> </td>
 					<td class="tableCell" data-bind="text: avg"> </td>
@@ -79,24 +88,26 @@
 	<script src="scripts/999_main.js"></script>
 	<script src="libs/jquery.js"></script>
 	<script src="libs/knockout.js"></script>
+	<script src="libs/bootstrap.min.js"></script>
+    <script src="libs/docs.min.js"></script>
 	
 	<script type="text/javascript">
 
-		function VM(){
+		function ViewModel(){
 			var self = this;
 			
-			self.currency = ko.observable(""); // Initially blank
-			self.data = [];
-			self.fiatCurrency = ko.observableArray([]);
+			self.data = []; // Raw data
 			
-			self.exchange = ko.observableArray([]);
+			self.currency = ko.observable(""); // Initially blank			
+			self.fiatCurrency = ko.observableArray([]);
+			self.exchangeState = ko.observableArray([]);
 			
 			self.addCurrency = function(currency){
 				self.fiatCurrency.push({name : currency});
 			};
 					
 			self.setExchangeData = function(key){
-				self.exchange(self.data[key]);
+				self.exchangeState(self.data[key]);
 			};
 			
 			self.setData = function(data, event){
@@ -108,7 +119,7 @@
 
 		};
 		
-		var viewModel = new VM();
+		var viewModel = new ViewModel();
 		
 		$(function() {
 		
@@ -124,6 +135,7 @@
 							viewModel.addCurrency(k);
 						});
 						
+						// Default to USD
 						viewModel.setExchangeData("USD");
 						ko.applyBindings(viewModel);
 						
