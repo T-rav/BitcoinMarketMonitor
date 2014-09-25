@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.kungfuactiongrip.btcmarketmonitor" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="WebIntent">
+        <param name="android-package" value="com.borismus.webintent.WebIntent" />
+    </feature>
+    <feature name="AppPreferences">
+        <param name="android-package" value="me.apla.cordova.AppPreferences" />
+    </feature>
+    <name>BitcoinMarketMonitor</name>
+    <description>
+        An application to monitor BTC prices around the world.
+    </description>
+    <author email="tmfrisinger@gmail.com" href="http://cordova.io">
+        Travis Frisinger
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>
