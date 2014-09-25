@@ -65,6 +65,7 @@
 				<tr>
 					<td class="tableCell" data-bind="text: symbol"> </td>
 					<td class="tableCell" data-bind="text: ask"> </td>
+					<td class="tableCell" data-bind="text: bid"> </td>
 					<td class="tableCell" data-bind="text: avg"> </td>
 					<td class="tableCell" data-bind="text: volume"> </td>
 					<td class="tableCell tableRowFixCell"> </td>
@@ -74,8 +75,7 @@
 		<div class="lastSync"> Last Sync : <span data-bind="text: lastSync"></span></div>
 	</main>
 	<div  id="error" class="alert alert-dismissable alert-danger footer">
-	  <button type="button" class="close closeX" data-dismiss="alert">X</button>
-	  <strong>Oh snap!</strong> <span>An error occurred fetching data. Please ensure your wifi or mobile data is on.</span>
+	  <strong>Oh snap!</strong> <span>An error occurred syncing.</span><br/><span> Please ensure your wifi or mobile data is on.</span>
 	</div>
 	<div  id="info" class="alert alert-dismissable alert-info footer">
 	  <strong>Hello.</strong> <span>This application monitors Bitcoin exchanges around the world in a variety of currencies and displays key trade info about each.</span>
@@ -101,7 +101,8 @@
 			self.data = []; // Raw data
 			self.headers = [
 								{title:'Symbol',sortKey:'symbol'},
-								{title:'Latest Price',sortKey:'price'},
+								{title:'Ask',sortKey:'ask'},
+								{title:'Bid',sortKey:'bid'},
 								{title:'Average',sortKey:'avg'},
 								{title:'Volume',sortKey:'vol'}
 						   ];
@@ -124,11 +125,16 @@
 				self.setExchangeData(fiat);
 			};
 			
-			self.showError = function(){
-				$("#error").show();
+			self.closeError = function(){
+				$("#error").hide(3500);
 			};
 			
-			self.setLastSync = function(){
+			self.showError = function(){
+				$("#error").show("slow");
+				setTimeout(self.closeError, 5000);
+			};
+			
+			self.setLastSync = function(isError){
 				var currentdate = new Date(); 
 				var hours = currentdate.getHours();
 				var mins = currentdate.getMinutes();
@@ -146,9 +152,12 @@
 					secs = "0" + secs;
 				}	
 				
-				var datetime = hours + ":" + mins + ":" + secs;
+				var result = hours + ":" + mins + ":" + secs;
 								
-				viewModel.lastSync(datetime);
+				if(isError){
+					result = "Error @ "+result;
+				}
+				viewModel.lastSync(result);
 			
 			};
 			
@@ -160,9 +169,14 @@
 							return a.symbol > b.symbol ? -1 : a.symbol < b.symbol ? 1 : a.symbol == b.symbol ? 0 : 0;
 						});
 						break;
-					case 'price':
+					case 'ask':
 						self.exchangeState.sort(function(a,b){
 							return a.ask > b.ask ? -1 : a.ask < b.ask ? 1 : a.ask == b.ask ? 0 : 0;
+						});
+						break;
+					case 'bid':
+						self.exchangeState.sort(function(a,b){
+							return a.bid > b.bid ? -1 : a.bid < b.bid ? 1 : a.bid == b.bid ? 0 : 0;
 						});
 						break;
 					case 'avg':
@@ -183,10 +197,10 @@
 			self.displayAbout = function(){
 				if(!self.isAboutOpen()){
 					self.isAboutOpen(true);
-					$("#info").show();
+					$("#info").show("slow");
 				}else{
 					self.isAboutOpen(false);
-					$("#info").hide();
+					$("#info").hide(1500);
 				}
 				
 			};
@@ -213,21 +227,19 @@
 							$.each(data, function(k,v){
 								viewModel.addCurrency(k);
 							});
-						
 							viewModel.setExchangeData("USD");
-							ko.applyBindings(viewModel);
 						}else{
 							viewModel.setExchangeData(self.currency());
 						}
 					},
 					error : function(){
-						viewModel.lastSync("Error");
+						viewModel.setLastSync(true);
 						viewModel.showError();
 					}
 				});	
 			
 			// set the sync time ;)
-			viewModel.setLastSync();
+			viewModel.setLastSync(false);
 		}
 		
 		var viewModel = new ViewModel();
@@ -237,6 +249,7 @@
 				$("#error").hide();
 				$("#info").hide();
 				fetchData(true);
+				ko.applyBindings(viewModel);
 		});
 
 	</script>
