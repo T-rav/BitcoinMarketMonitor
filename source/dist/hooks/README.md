@@ -20,6 +20,8 @@
 -->
 # Cordova Hooks
 
+**** USED HOOK : http://intown.biz/2014/03/07/changing-the-cordova-app-icon/
+
 This directory may contain scripts used to customize cordova commands. This
 directory used to exist at `.cordova/hooks`, but has now been moved to the
 project root. Any scripts you add to these directories will be executed before
