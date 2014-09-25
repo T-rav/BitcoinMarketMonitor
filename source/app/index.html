@@ -45,15 +45,6 @@
         </section>
       </div>
     </header>
-	
-	<!--
-		navdrawer-container promote-layer
-		navbar-collapse collapse navbar-inverse-collapse
-	-->
-
-	<!--
-		navbar navbar-inverse
-	-->
 	<nav class="navdrawer-container promote-layer navbar navbar-inverse">
 	  <h4 class="logo"><b>Currencies</b></h4>
 	  <ul class="nav navbar-nav" data-bind="foreach:fiatCurrency">
@@ -83,7 +74,13 @@
 				</tr>
 			</tbody>	
 		</table>
+		<div class="lastSync"> Last Sync : <span data-bind="text: lastSync"></span></div>
 	</main>
+	<div  id="error" class="alert alert-dismissable alert-danger footer">
+	  <button type="button" class="close" data-dismiss="alert">×</button>
+	  <strong>Oh snap!</strong> <span>An error occurred fetching data. Please ensure your wifi or mobile data is on.</span>
+	</div>
+	
     <!-- build:js scripts/main.min.js -->
 	<script src="scripts/001_WebHelper.js"></script>
 	<script src="scripts/002_PrefsHelper.js"></script>
@@ -99,9 +96,10 @@
 		function ViewModel(){
 			var self = this;
 			
+			self.message = ko.observable("");
+			self.lastSync = ko.observable("In Progress...");
 			self.data = []; // Raw data
-			
-			self.currency = ko.observable(""); // Initially blank			
+			self.currency = ko.observable(""); // Initially blank				
 			self.fiatCurrency = ko.observableArray([]);
 			self.exchangeState = ko.observableArray([]);
 			
@@ -119,34 +117,73 @@
 				self.currency(fiat);
 				self.setExchangeData(fiat);
 			};
+			
+			self.showError = function(){
+				$("#error").show();
+			};
+			
+			self.setLastSync = function(){
+				var currentdate = new Date(); 
+				var hours = currentdate.getHours();
+				var mins = currentdate.getMinutes();
+				var secs = currentdate.getSeconds();
+				
+				if(hours < 10){
+					hours = "0" + hours;
+				}
+				
+				if(mins < 10){
+					mins = "0" + mins;
+				}
+				
+				if(secs < 10){
+					secs = "0" + secs;
+				}	
+				
+				var datetime = hours + ":" + mins + ":" + secs;
+								
+				viewModel.lastSync(datetime);
+			
+			};
 
 		};
 		
-		var viewModel = new ViewModel();
-		
-		$(function() {
-		
-				viewModel.currency("USD"); // Text appears
-				$.ajax({
+		function fetchData(init){
+			viewModel.lastSync("In Progress...");
+			$.ajax({
 					url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
 					dataType : 'jsonp',
 					crossDomain : true,
 					async: true,
 					success : function(data){
 						viewModel.data = data;
-						$.each(data, function(k,v){
-							viewModel.addCurrency(k);
-						});
-						
 						// Default to USD
-						viewModel.setExchangeData("USD");
-						ko.applyBindings(viewModel);
+						if(init){
+							$.each(data, function(k,v){
+								viewModel.addCurrency(k);
+							});
 						
+							viewModel.setExchangeData("USD");
+							ko.applyBindings(viewModel);
+						}else{
+							viewModel.setExchangeData(self.currency());
+						}
+						
+						// set the sync time ;)
+						viewModel.setLastSync();
 					},
 					error : function(){
-						alert("An error occured while fetching data!\nPlease ensure you wifi \nor mobile data is on.");
+						viewModel.showError();
 					}
 				});	
+		}
+		
+		var viewModel = new ViewModel();
+		$(function() {
+		
+				viewModel.currency("USD"); // Text appears
+				$("#error").hide();
+				fetchData(true);
 		});
 
 	</script>
