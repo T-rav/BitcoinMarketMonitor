@@ -230,7 +230,7 @@
 					success : function(data){
 						viewModel.data = data;
 						// Default to USD
-						if(init){
+						if(init || self.fiatCurrency().length == 0){
 							$.each(data, function(k,v){
 								viewModel.addCurrency(k);
 							});
