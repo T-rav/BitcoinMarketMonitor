@@ -230,7 +230,9 @@
 					success : function(data){
 						viewModel.data = data;
 						// Default to USD
-						if(init || self.fiatCurrency().length == 0){
+						
+						// TODO : Handle where the model has not initialized ;)
+						if(init){
 							$.each(data, function(k,v){
 								viewModel.addCurrency(k);
 							});

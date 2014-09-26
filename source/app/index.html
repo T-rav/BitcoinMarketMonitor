@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="description" content="An application to monitor BTC exchanges around the world.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bitcoin Charts Markets</title>
+    <title>Bitcoin Market Monitor</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -85,6 +85,7 @@
 	<script src="scripts/002_PrefsHelper.js"></script>
 	<script src="scripts/998_app.js"></script>
 	<script src="scripts/999_main.js"></script>
+	<script src="cordova.js"></script>
 	<script src="libs/jquery.js"></script>
 	<script src="libs/knockout.js"></script>
 	<script src="libs/bootstrap.min.js"></script>
@@ -126,16 +127,6 @@
 			
 			self.closeError = function(){
 				$("#error").hide(3500);
-			};
-			
-			self.alertDismissed = function(){
-				self.closeError();
-			};
-			
-			self.showError = function(){
-				$("#error").show("slow");
-				setTimeout(self.closeError, 5000);
-				window.plugin.notification.local.add({message : 'An error occurred syncing Bitcoin Market Monitor'});
 			};
 			
 			self.setLastSync = function(isError){
@@ -206,10 +197,15 @@
 					self.isAboutOpen(false);
 					$("#info").hide(1500);
 				}
-				
-				window.plugin.notification.local.add({message : 'About Dialog Triggered'});
-				
+				//window.plugin.notification.local.add({message : 'About Dialog Triggered'});
 			};
+			
+			self.showError = function(){
+				$("#error").show("slow");
+				setTimeout(self.closeError, 5000);
+				//window.plugin.notification.local.add({message : 'An error occurred syncing.'});
+			};
+			
 
 		};
 		
@@ -219,8 +215,13 @@
 			fetchData(false);
 		}
 		
+		function displayNotification(){
+			window.plugin.notification.local.add({message : 'BTC on the move...'});
+		}
+		
 		function fetchData(init){
 			setInterval(function(){timedFetch()}, 30000);
+			setInterval(function(){displayNotification()}, 40000);
 			$.ajax({
 					url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
 					dataType : 'jsonp',
@@ -229,6 +230,8 @@
 					success : function(data){
 						viewModel.data = data;
 						// Default to USD
+						
+						// TODO : Handle where the model has not initialized ;)
 						if(init){
 							$.each(data, function(k,v){
 								viewModel.addCurrency(k);
