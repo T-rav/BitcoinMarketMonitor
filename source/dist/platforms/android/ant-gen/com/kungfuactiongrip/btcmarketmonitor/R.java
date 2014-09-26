@@ -12,7 +12,13 @@ public final class R {
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
-        public static final int screen=0x7f020001;
+        public static final int icon2=0x7f020001;
+        public static final int icon3=0x7f020002;
+        public static final int loading=0x7f020003;
+        public static final int loading2=0x7f020004;
+        public static final int loading3=0x7f020005;
+        public static final int loading4=0x7f020006;
+        public static final int screen=0x7f020007;
     }
     public static final class string {
         public static final int activity_name=0x7f040002;

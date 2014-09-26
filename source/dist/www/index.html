@@ -39,21 +39,13 @@
 			<h2 class="logo">Bitcoin<strong>Markets</strong></h2>
 		</span>
 		<span style="float:right;">
-			<button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+			<button style="width:25px;" data-bind="click: displayAbout"><img src="images/info.svg" alt="Menu"></button>
+			<button style="width:35px; margin-right:10px;" class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
 		</span>
         <section class="app-bar-actions">
         </section>
       </div>
     </header>
-	
-	<!--
-		navdrawer-container promote-layer
-		navbar-collapse collapse navbar-inverse-collapse
-	-->
-
-	<!--
-		navbar navbar-inverse
-	-->
 	<nav class="navdrawer-container promote-layer navbar navbar-inverse">
 	  <h4 class="logo"><b>Currencies</b></h4>
 	  <ul class="nav navbar-nav" data-bind="foreach:fiatCurrency">
@@ -63,27 +55,32 @@
 
 	<main class="main-container">
 		<div style="margin-left:5px;"><b>Currency</b> : <span data-bind="text: currency"></span></div>
-		<table class="table table-striped" style="font-size:12px;">
+		<table class="table table-striped" style="font-size:13px;">
 			<thead>
-				<tr class="tableRow">
-					<td class="tableHeader"> Symbol </td>
-					<td class="tableHeader"> Latest&nbsp;Price </td>
-					<td class="tableHeader"> Average </td>
-					<td class="tableHeader"> Volume </td>
-					<td class="tableHeader tableRowFixCell"> </td>
+				<tr class="tableRow" data-bind="foreach: headers">
+					<td data-bind="click: $parent.sort, text: title"></td>
 				</tr>
 			</thead>
 			<tbody data-bind="foreach:exchangeState">
 				<tr>
 					<td class="tableCell" data-bind="text: symbol"> </td>
 					<td class="tableCell" data-bind="text: ask"> </td>
+					<td class="tableCell" data-bind="text: bid"> </td>
 					<td class="tableCell" data-bind="text: avg"> </td>
 					<td class="tableCell" data-bind="text: volume"> </td>
 					<td class="tableCell tableRowFixCell"> </td>
 				</tr>
 			</tbody>	
 		</table>
+		<div class="lastSync"> Last Sync : <span data-bind="text: lastSync"></span></div>
 	</main>
+	<div  id="error" class="alert alert-dismissable alert-danger footer">
+	  <strong>Oh snap!</strong> <span>An error occurred syncing.</span><br/><span> Please ensure your wifi or mobile data is on.</span>
+	</div>
+	<div  id="info" class="alert alert-dismissable alert-info footer">
+	  <strong>Hello.</strong> <span>This application monitors Bitcoin exchanges around the world in a variety of currencies and displays key trade info about each.</span>
+	</div>
+	
     <!-- build:js scripts/main.min.js -->
 	<script src="scripts/001_WebHelper.js"></script>
 	<script src="scripts/002_PrefsHelper.js"></script>
@@ -99,9 +96,17 @@
 		function ViewModel(){
 			var self = this;
 			
+			self.message = ko.observable("");
+			self.lastSync = ko.observable("In Progress...");
 			self.data = []; // Raw data
-			
-			self.currency = ko.observable(""); // Initially blank			
+			self.headers = [
+								{title:'Symbol',sortKey:'symbol'},
+								{title:'Ask',sortKey:'ask'},
+								{title:'Bid',sortKey:'bid'},
+								{title:'Average',sortKey:'avg'},
+								{title:'Volume',sortKey:'vol'}
+						   ];
+			self.currency = ko.observable(""); // Initially blank				
 			self.fiatCurrency = ko.observableArray([]);
 			self.exchangeState = ko.observableArray([]);
 			
@@ -119,34 +124,132 @@
 				self.currency(fiat);
 				self.setExchangeData(fiat);
 			};
+			
+			self.closeError = function(){
+				$("#error").hide(3500);
+			};
+			
+			self.showError = function(){
+				$("#error").show("slow");
+				setTimeout(self.closeError, 5000);
+			};
+			
+			self.setLastSync = function(isError){
+				var currentdate = new Date(); 
+				var hours = currentdate.getHours();
+				var mins = currentdate.getMinutes();
+				var secs = currentdate.getSeconds();
+				
+				if(hours < 10){
+					hours = "0" + hours;
+				}
+				
+				if(mins < 10){
+					mins = "0" + mins;
+				}
+				
+				if(secs < 10){
+					secs = "0" + secs;
+				}	
+				
+				var result = hours + ":" + mins + ":" + secs;
+								
+				if(isError){
+					result = "Error @ "+result;
+				}
+				viewModel.lastSync(result);
+			
+			};
+			
+			self.sort = function(header, event){
+				var sortKey = header.sortKey;
+				switch(sortKey){
+					case 'symbol':
+						self.exchangeState.sort(function(a,b){
+							return a.symbol > b.symbol ? -1 : a.symbol < b.symbol ? 1 : a.symbol == b.symbol ? 0 : 0;
+						});
+						break;
+					case 'ask':
+						self.exchangeState.sort(function(a,b){
+							return a.ask > b.ask ? -1 : a.ask < b.ask ? 1 : a.ask == b.ask ? 0 : 0;
+						});
+						break;
+					case 'bid':
+						self.exchangeState.sort(function(a,b){
+							return a.bid > b.bid ? -1 : a.bid < b.bid ? 1 : a.bid == b.bid ? 0 : 0;
+						});
+						break;
+					case 'avg':
+						self.exchangeState.sort(function(a,b){
+							return a.avg > b.avg ? -1 : a.avg < b.avg ? 1 : a.avg == b.avg ? 0 : 0;
+						});
+						break;
+					case 'vol':
+						self.exchangeState.sort(function(a,b){
+							return a.volume > b.volume ? -1 : a.volume < b.volume ? 1 : a.volume == b.volume ? 0 : 0;
+						});
+						break;
+				}
+			};
+			
+			self.isAboutOpen = ko.observable(false);
+			
+			self.displayAbout = function(){
+				if(!self.isAboutOpen()){
+					self.isAboutOpen(true);
+					$("#info").show("slow");
+				}else{
+					self.isAboutOpen(false);
+					$("#info").hide(1500);
+				}
+				
+			};
 
 		};
 		
-		var viewModel = new ViewModel();
+		// reload data on an interval
+		function timedFetch(){
+			viewModel.lastSync("In Progress...");
+			fetchData(false);
+		}
 		
-		$(function() {
-		
-				viewModel.currency("USD"); // Text appears
-				$.ajax({
+		function fetchData(init){
+			setInterval(function(){timedFetch()}, 30000);
+			$.ajax({
 					url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
 					dataType : 'jsonp',
 					crossDomain : true,
 					async: true,
 					success : function(data){
 						viewModel.data = data;
-						$.each(data, function(k,v){
-							viewModel.addCurrency(k);
-						});
-						
 						// Default to USD
-						viewModel.setExchangeData("USD");
-						ko.applyBindings(viewModel);
-						
+						if(init){
+							$.each(data, function(k,v){
+								viewModel.addCurrency(k);
+							});
+							viewModel.setExchangeData("USD");
+						}else{
+							viewModel.setExchangeData(self.currency());
+						}
 					},
 					error : function(){
-						alert("An error occured while fetching data!\nPlease ensure you wifi \nor mobile data is on.");
+						viewModel.setLastSync(true);
+						viewModel.showError();
 					}
 				});	
+			
+			// set the sync time ;)
+			viewModel.setLastSync(false);
+		}
+		
+		var viewModel = new ViewModel();
+		$(function() {
+		
+				viewModel.currency("USD"); // Text appears
+				$("#error").hide();
+				$("#info").hide();
+				fetchData(true);
+				ko.applyBindings(viewModel);
 		});
 
 	</script>
