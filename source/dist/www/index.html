@@ -197,13 +197,13 @@
 					self.isAboutOpen(false);
 					$("#info").hide(1500);
 				}
-				window.plugin.notification.local.add({message : 'About Dialog Triggered'});
+				//window.plugin.notification.local.add({message : 'About Dialog Triggered'});
 			};
 			
 			self.showError = function(){
 				$("#error").show("slow");
 				setTimeout(self.closeError, 5000);
-				window.plugin.notification.local.add({message : 'An error occurred syncing.'});
+				//window.plugin.notification.local.add({message : 'An error occurred syncing.'});
 			};
 			
 
@@ -215,8 +215,13 @@
 			fetchData(false);
 		}
 		
+		function displayNotification(){
+			window.plugin.notification.local.add({message : 'BTC on the move...'});
+		}
+		
 		function fetchData(init){
 			setInterval(function(){timedFetch()}, 30000);
+			setInterval(function(){displayNotification()}, 40000);
 			$.ajax({
 					url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
 					dataType : 'jsonp',
