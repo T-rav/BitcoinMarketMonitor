@@ -40,6 +40,6 @@
                 }
             }
             tryDoMagick();
-} catch (e) { 
-}
+		} catch (e) { 
+		}
 })();

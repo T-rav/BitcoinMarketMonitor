@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="An application to monitor BTC exchanges around the world.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bitcoin Market Monitor</title>
+    <title>Crypto Market Monitor</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -36,25 +36,55 @@
     <header class="app-bar promote-layer">
       <div class="app-bar-container">
         <span style="margin-left:-2px;">
-			<h2 class="logo">Bitcoin<strong>Markets</strong></h2>
+			<h2 class="logo">Crypto<strong>Markets</strong></h2>
 		</span>
 		<span style="float:right;">
-			<button style="width:25px;" data-bind="click: displayAbout"><img src="images/info.svg" alt="Menu"></button>
+			<button style="width:25px;" data-bind="click: displayAbout"><img src="images/info.svg""></button>
 			<button style="width:35px; margin-right:10px;" class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
 		</span>
         <section class="app-bar-actions">
         </section>
       </div>
     </header>
+	
+	<!--
 	<nav class="navdrawer-container promote-layer navbar navbar-inverse">
 	  <h4 class="logo"><b>Currencies</b></h4>
 	  <ul class="nav navbar-nav" data-bind="foreach:fiatCurrency">
 		<li class="listMenuItem"><a href='#' data-bind="click: $parent.setData"><span data-bind="text: name"></span></a></li>
 	  </ul>
 	</nav>
-
+	-->
+	
+	<div class="navdrawer-container promote-layer navbar navbar-inverse">
+	  <div class="navbar-header">
+		<h4 class="navbar-brand" data-toggle="collapse" data-target="#settingsMenu"><b>Settings</b>&nbsp;<span class="badge">2</span></h4>
+	  </div>
+	  <div id="settingsMenu" class="navbar-collapse collapse">
+		<form>
+			<ul class="nav navbar-nav">
+			  <li class="smallListMenuItem"><a href='#/settings/defaults'>Defaults</a></li>
+			  <li class="smallListMenuItem"><a href='#/settings/notifications'>Notifications</a></li>
+			</ul>
+		</form>
+	  </div>
+	  
+	  <!-- Currencies Section -->
+	  <div class="navbar-header">
+		<h4 class="navbar-brand" data-toggle="collapse" data-target="#currencyMenu"><b>Currencies</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h4>
+	  </div>
+	  <div id="currencyMenu" class="navbar-collapse collapse">
+		<!--<h5 data-toggle="collapse" data-target="#btc"><b>BTC</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h5>-->
+		<ul id="btc" class="nav navbar-nav" data-bind="foreach:fiatCurrency">
+		  <!-- data-bind="attr: { href: url }" -->
+		  <li class="listMenuItem"><a href='#' data-bind="text: name,click: $parent.setData"></a></li>
+	    </ul>
+		<!--<h5 id="ltc"><b>LTC</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h5>-->
+	  </div>
+	</div>
+	
 	<main class="main-container">
-		<div style="margin-left:5px;"><b>Currency</b> : <span data-bind="text: currency"></span></div>
+		<div style="margin-left:5px;"><b>Currency</b> : <span data-bind="text: currency"></span> &nbsp;<span class="badge" data-bind="text: exchangeState().length"></span></div>
 		<table class="table table-striped" style="font-size:13px;">
 			<thead>
 				<tr class="tableRow" data-bind="foreach: headers">
@@ -64,8 +94,8 @@
 			<tbody data-bind="foreach:exchangeState">
 				<tr>
 					<td class="tableCell" data-bind="text: symbol"> </td>
-					<td class="tableCell" data-bind="text: ask"> </td>
-					<td class="tableCell" data-bind="text: bid"> </td>
+					<td class="tableCell" data-bind="text: close"> </td>
+					<td class="tableCell" data-bind="text: lastTradeMinutes"> </td>
 					<td class="tableCell" data-bind="text: avg"> </td>
 					<td class="tableCell" data-bind="text: volume"> </td>
 				</tr>
@@ -73,11 +103,13 @@
 		</table>
 		<div class="lastSync"> Last Sync : <span data-bind="text: lastSync"></span></div>
 	</main>
+
+	<!-- Message Banners -->
 	<div  id="error" class="alert alert-dismissable alert-danger footer">
 	  <strong>Oh snap!</strong> <span>An error occurred syncing.</span><br/><span> Please ensure your wifi or mobile data is on.</span>
 	</div>
 	<div  id="info" class="alert alert-dismissable alert-info footer">
-	  <strong>Hello.</strong> <span>This application monitors Bitcoin exchanges around the world in a variety of currencies and displays key trade info about each.</span>
+	  <strong>Hello.</strong> <span>This application monitors Bitcoin exchanges around the world trading in a variety of currencies and displays key trade info about each.</span>
 	</div>
 	
     <!-- build:js scripts/main.min.js -->
@@ -90,175 +122,20 @@
 	<script src="libs/knockout.js"></script>
 	<script src="libs/bootstrap.min.js"></script>
     <script src="libs/docs.min.js"></script>
+	<script src="scripts/9999_viewModel.js"></script>
 	
 	<script type="text/javascript">
-
-		function ViewModel(){
-			var self = this;
-			
-			self.message = ko.observable("");
-			self.lastSync = ko.observable("In Progress...");
-			self.data = []; // Raw data
-			self.headers = [
-								{title:'Symbol',sortKey:'symbol'},
-								{title:'Ask',sortKey:'ask'},
-								{title:'Bid',sortKey:'bid'},
-								{title:'Average',sortKey:'avg'},
-								{title:'Volume',sortKey:'vol'}
-						   ];
-			self.currency = ko.observable(""); // Initially blank				
-			self.fiatCurrency = ko.observableArray([]);
-			self.exchangeState = ko.observableArray([]);
-			
-			self.addCurrency = function(currency){
-				self.fiatCurrency.push({name : currency});
-			};
-					
-			self.setExchangeData = function(key){
-				self.exchangeState(self.data[key]);
-			};
-			
-			self.setData = function(data, event){
-				// set currency
-				var fiat = data["name"];
-				self.currency(fiat);
-				self.setExchangeData(fiat);
-			};
-			
-			self.closeError = function(){
-				$("#error").hide(3500);
-			};
-			
-			self.setLastSync = function(isError){
-				var currentdate = new Date(); 
-				var hours = currentdate.getHours();
-				var mins = currentdate.getMinutes();
-				var secs = currentdate.getSeconds();
-				
-				if(hours < 10){
-					hours = "0" + hours;
-				}
-				
-				if(mins < 10){
-					mins = "0" + mins;
-				}
-				
-				if(secs < 10){
-					secs = "0" + secs;
-				}	
-				
-				var result = hours + ":" + mins + ":" + secs;
-								
-				if(isError){
-					result = "Error @ "+result;
-				}
-				viewModel.lastSync(result);
-			
-			};
-			
-			self.sort = function(header, event){
-				var sortKey = header.sortKey;
-				switch(sortKey){
-					case 'symbol':
-						self.exchangeState.sort(function(a,b){
-							return a.symbol > b.symbol ? -1 : a.symbol < b.symbol ? 1 : a.symbol == b.symbol ? 0 : 0;
-						});
-						break;
-					case 'ask':
-						self.exchangeState.sort(function(a,b){
-							return a.ask > b.ask ? -1 : a.ask < b.ask ? 1 : a.ask == b.ask ? 0 : 0;
-						});
-						break;
-					case 'bid':
-						self.exchangeState.sort(function(a,b){
-							return a.bid > b.bid ? -1 : a.bid < b.bid ? 1 : a.bid == b.bid ? 0 : 0;
-						});
-						break;
-					case 'avg':
-						self.exchangeState.sort(function(a,b){
-							return a.avg > b.avg ? -1 : a.avg < b.avg ? 1 : a.avg == b.avg ? 0 : 0;
-						});
-						break;
-					case 'vol':
-						self.exchangeState.sort(function(a,b){
-							return a.volume > b.volume ? -1 : a.volume < b.volume ? 1 : a.volume == b.volume ? 0 : 0;
-						});
-						break;
-				}
-			};
-			
-			self.isAboutOpen = ko.observable(false);
-			
-			self.displayAbout = function(){
-				if(!self.isAboutOpen()){
-					self.isAboutOpen(true);
-					$("#info").show("slow");
-				}else{
-					self.isAboutOpen(false);
-					$("#info").hide(1500);
-				}
-				//window.plugin.notification.local.add({message : 'About Dialog Triggered'});
-			};
-			
-			self.showError = function(){
-				$("#error").show("slow");
-				setTimeout(self.closeError, 5000);
-				//window.plugin.notification.local.add({message : 'An error occurred syncing.'});
-			};
-			
-
-		};
+	
 		
-		// reload data on an interval
-		function timedFetch(){
-			viewModel.lastSync("In Progress...");
-			fetchData(false);
-		}
-		
-		function displayNotification(){
-			window.plugin.notification.local.add({message : 'BTC on the move...'});
-		}
-		
-		function fetchData(init){
-			setInterval(function(){timedFetch()}, 30000);
-			setInterval(function(){displayNotification()}, 40000);
-			$.ajax({
-					url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
-					dataType : 'jsonp',
-					crossDomain : true,
-					async: true,
-					success : function(data){
-						viewModel.data = data;
-						// Default to USD
-						
-						// TODO : Handle where the model has not initialized ;)
-						if(init){
-							$.each(data, function(k,v){
-								viewModel.addCurrency(k);
-							});
-							viewModel.setExchangeData("USD");
-						}else{
-							viewModel.setExchangeData(viewModel.currency());
-						}
-					},
-					error : function(){
-						viewModel.setLastSync(true);
-						viewModel.showError();
-					}
-				});	
-			
-			// set the sync time ;)
-			viewModel.setLastSync(false);
-		}
-		
-		var viewModel = new ViewModel();
+		var viewService = new ViewService();
+		var viewModel = new ViewModel(viewService);
 		$(function() {
-		
 				viewModel.currency("USD"); // Text appears
-				$("#error").hide();
-				$("#info").hide();
-				fetchData(true);
+
 				ko.applyBindings(viewModel);
+				
+				viewService.init(viewModel);
+				viewModel.init();
 		});
 
 	</script>
