@@ -22,7 +22,7 @@
 			
 			self.init = function(){
 				viewService.initState();
-				viewService.fetchData(true, self);
+				//viewService.fetchData(true, self);
 			};
 
 			self.addCurrency = function(currency){
@@ -60,55 +60,55 @@
 					case 'symbol':
 						if(self.sortAsc()){
 							self.exchangeState.sort(function(a,b){
-								return a.symbol > b.symbol ? -1 : a.symbol < b.symbol ? 1 : a.symbol == b.symbol ? 0 : 0;
+								return a.symbol > b.symbol ? -1 : a.symbol < b.symbol ? 1 : a.symbol === b.symbol ? 0 : 0;
 							});
 						}else{
 							self.exchangeState.sort(function(a,b){
-								return a.symbol < b.symbol ? -1 : a.symbol > b.symbol ? 1 : a.symbol == b.symbol ? 0 : 0;
+								return a.symbol < b.symbol ? -1 : a.symbol > b.symbol ? 1 : a.symbol === b.symbol ? 0 : 0;
 							});
 						}
 					break;
 					case 'latest':
 						if(self.sortAsc()){
 							self.exchangeState.sort(function(a,b){
-								return a.close > b.close ? -1 : a.close < b.close ? 1 : a.close == b.close ? 0 : 0;
+								return a.close > b.close ? -1 : a.close < b.close ? 1 : a.close === b.close ? 0 : 0;
 							});
 						}else{
 							self.exchangeState.sort(function(a,b){
-								return a.close < b.close ? -1 : a.close > b.close ? 1 : a.close == b.close ? 0 : 0;
+								return a.close < b.close ? -1 : a.close > b.close ? 1 : a.close === b.close ? 0 : 0;
 							});
 						}
 					break;
 					case 'bid':
 						if(self.sortAsc()){
 							self.exchangeState.sort(function(a,b){
-								return a.bid > b.bid ? -1 : a.bid < b.bid ? 1 : a.bid == b.bid ? 0 : 0;
+								return a.bid > b.bid ? -1 : a.bid < b.bid ? 1 : a.bid === b.bid ? 0 : 0;
 							});
 						}else{
 							self.exchangeState.sort(function(a,b){
-								return a.bid < b.bid ? -1 : a.bid > b.bid ? 1 : a.bid == b.bid ? 0 : 0;
+								return a.bid < b.bid ? -1 : a.bid > b.bid ? 1 : a.bid === b.bid ? 0 : 0;
 							});
 						}
 					break;
 					case 'avg':
 						if(self.sortAsc()){
 							self.exchangeState.sort(function(a,b){
-								return a.avg > b.avg ? -1 : a.avg < b.avg ? 1 : a.avg == b.avg ? 0 : 0;
+								return a.avg > b.avg ? -1 : a.avg < b.avg ? 1 : a.avg === b.avg ? 0 : 0;
 							});
 						}else{
 							self.exchangeState.sort(function(a,b){
-								return a.avg < b.avg ? -1 : a.avg > b.avg ? 1 : a.avg == b.avg ? 0 : 0;
+								return a.avg < b.avg ? -1 : a.avg > b.avg ? 1 : a.avg === b.avg ? 0 : 0;
 							});
 						}
 					break;
 					case 'vol':
 						if(self.sortAsc()){
 							self.exchangeState.sort(function(a,b){
-								return a.volume > b.volume ? -1 : a.volume < b.volume ? 1 : a.volume == b.volume ? 0 : 0;
+								return a.volume > b.volume ? -1 : a.volume < b.volume ? 1 : a.volume === b.volume ? 0 : 0;
 							});
 						}else{
 							self.exchangeState.sort(function(a,b){
-								return a.volume < b.volume ? -1 : a.volume > b.volume ? 1 : a.volume == b.volume ? 0 : 0;
+								return a.volume < b.volume ? -1 : a.volume > b.volume ? 1 : a.volume === b.volume ? 0 : 0;
 							});
 						}
 					break;
@@ -142,13 +142,70 @@
 
 		};
 		
+		function SettingsViewModel(){
+			var self = this;
+			
+			self.fiatCurrency = ko.observableArray([]);
+			
+			self.addCurrency = function(currency, isSelected){
+				self.fiatCurrency.push({name : currency, selected : isSelected});
+			};
+			
+			self.save = function(){
+				var result = [];
+				
+				for(var i = 0; i < self.fiatCurrency().length; i++){
+					var entry = self.fiatCurrency()[i];
+					var selected = false;
+					try{
+						var foo = self.selectedFiatCurrency()[entry];
+						selected = true;
+					}catch(e){
+						console.log("ERROR -> " + e);
+					}
+					result[name] = entry.selected;
+				}
+			
+				prefs.store(noop, noop, "defaults", JSON.stringify(result));
+			};
+			
+			self.cancel = function(){
+				self.fiatCurrency.valueHasMutated();
+			};
+			
+			self.toggle = function(item){
+				alert(item.name);
+			};
+
+		};
+		
 		
 		function ViewService(){
 			var self = this;
 			
-			self.init = function(viewModel){
-				setTimeout(function(){self.timedFetch(viewModel)}, 10000);
-				setTimeout(function(){self.displayNotification("BTC is on the move...")}, 1000);
+			self.currentData = [];
+			self.previousData = [];
+			self.fiatCurrency = [];
+			
+			// TODO : Create scheduling service instead ;)
+			self.init = function(viewModel, settingsViewModel){
+				setTimeout(function(){self.timedFetch(viewModel, settingsViewModel)}, 10);
+				//setTimeout(function(){self.displayNotification("BTC is on the move...")}, 1000);
+			};
+
+			// TODO : Abstract to a data repository
+			self.setRawData = function(data){
+				self.previousData = self.currentData;
+				self.currentData = data;
+			};
+			
+			// TODO : Abstract to a data repository
+			self.getRawData = function(){
+				return self.currentData;
+			};
+			
+			self.getFiatCurrency = function(){
+				return self.fiatCurrency;
 			};
 			
 			self.renderSyncMessage = function(isError){
@@ -178,10 +235,10 @@
 				return result;
 			};
 			
-			self.timedFetch = function(viewModel){
+			self.timedFetch = function(viewModel, settingsViewModel){
 				viewModel.lastSync("In Progress...");
-				self.fetchData(false, viewModel);
-				setInterval(function(){self.timedFetch(viewModel)}, 30000);
+				self.fetchData(false, viewModel, settingsViewModel);
+				setInterval(function(){self.timedFetch(viewModel, settingsViewModel)}, 30000);
 			};
 			
 			self.displayNotification = function(message){
@@ -202,23 +259,46 @@
 				$("#"+divID).hide(duration);
 			};
 
-			self.fetchData = function(init, viewModel){
+			self.fetchData = function(init, viewModel, settingsViewModel){
 				$.ajax({
 					url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
 					dataType : 'jsonp',
 					crossDomain : true,
 					async: true,
 					success : function(data){
+						self.setRawData(data);
 						viewModel.data = data;
-						// Default to USD
+
+						if(init || viewModel.fiatCurrency().length === 0){
+							var defaults = "";
+							prefs.fetch(function (storedValue) {
+											prefsObject = JSON.eval(storedValue);
+										}, 
+										function (retrieveError) {
+										}, 
+										"defaults");
 						
-						// TODO : Handle where the model has not initialized ;)
-						if(init || viewModel.fiatCurrency().length == 0){
+						
 							$.each(data, function(k,v){
+								// TODO : Populate into repository
+								//self.fiatCurrency.push({name : currency});
+								// TODO : Abstract out to event that is triggered
 								viewModel.addCurrency(k);
+								// TODO : Abstract out of there 
+								var isSelected = true;
+								try{
+									isSelected = defaults[k]["selected"];
+								}catch(e){
+									isSelected = true;
+									console.log("ERROR -> " + e);
+								}
+								settingsViewModel.addCurrency(k, isSelected);
 							});
+							
+							// TODO : Abstract to view init
 							viewModel.setExchangeData("USD");
 						}else{
+							// TODO : Abstract to event that is triggered 
 							viewModel.setExchangeData(viewModel.currency());
 						}
 						

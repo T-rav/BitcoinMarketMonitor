@@ -8,8 +8,6 @@
 
     // User Preferences plugin shim import
     // uncomment to use preferences
-    // var prefs = window.PrefsHelper;
-    // var noop = function() {};
     
     // example prefs usage:
     // prefs.store(noop, noop, "key", "value");
@@ -28,8 +26,9 @@
         },
         show: function() {
             // define splash and content -id elements for this functionality
-            //$("#splash").hide();
-            //$("#content").show();
+			$('#main').show();
+			//$('#load').collapse('show');
+			//setTimeout(function(){$('#load').collapse('hide'); setTimeout(function(){$('#main').show();},500);},4500);
         },
         fixBottomMenuItemsForSmallerScreens: function() {
             // if you have a ul.bottom, this helps to place it on smaller screens

@@ -20,20 +20,6 @@ module.exports = [
         "clobbers": [
             "navigator.splashscreen"
         ]
-    },
-    {
-        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js",
-        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification",
-        "clobbers": [
-            "plugin.notification.local"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.device/www/device.js",
-        "id": "org.apache.cordova.device.device",
-        "clobbers": [
-            "device"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -41,9 +27,7 @@ module.exports.metadata =
 {
     "com.borismus.webintent": "1.0.0",
     "me.apla.cordova.app-preferences": "0.4.2",
-    "org.apache.cordova.splashscreen": "0.3.3",
-    "de.appplant.cordova.plugin.local-notification": "0.7.4",
-    "org.apache.cordova.device": "0.2.13-dev"
+    "org.apache.cordova.splashscreen": "0.3.3"
 }
 // BOTTOM OF METADATA
 });

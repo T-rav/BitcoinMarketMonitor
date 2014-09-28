@@ -33,7 +33,7 @@
   </head>
   <body>
 	
-	<main class="main-container">
+	<div class="main-container">
         <span style="position:fixed;top:40%;left:20%;">
 			<h2>Bitcoin<strong><br/>Market Monitor</strong></h2>
 			<h5>StoneAge Technologies</h5>
@@ -46,7 +46,7 @@
 		<div class="progress progress-striped active middle">
 	       <div class="progress-bar" style="width: 2%"></div>
 	    </div>
-	</main>
+	</div>
 
     <!-- build:js scripts/main.min.js -->
 	<script src="scripts/001_WebHelper.js"></script>
@@ -90,7 +90,7 @@
 		
 		$(function() {
 			var message = new messageModel();
-			var model = new updateProgress(10, 15);
+			var model = new updateProgress(10, 25);
 			setInterval(function(){model.update(message);}, 400);
 			ko.applyBindings(message);
 				
