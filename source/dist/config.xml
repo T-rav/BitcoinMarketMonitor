@@ -9,6 +9,4 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-	<preference name="SplashScreen" value="loading4" /> 
-	<preference name="SplashScreenDelay" value="4000" />
 </widget>
