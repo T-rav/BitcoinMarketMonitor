@@ -15,5 +15,3 @@
 .middle {position: fixed;width:97%; bottom:0px;}
 .top{position:fixed;width:97%; bottom:40px;}
 .lastSync{font-size:10px;margin-left:5px;position:fixed;bottom:5px;}
-.selectedBadge{background-color:#df691a;color:#ffffff;}
-.deselectedBadge{background-color:#4e5d6c; color:#ffffff;}
