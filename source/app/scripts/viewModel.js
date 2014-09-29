@@ -136,8 +136,7 @@
 						
 			self.showError = function(){
 				$("#error").show("slow");
-				setTimeout(function(){viewService.close("error",3500);}, 5000);
-				//window.plugin.notification.local.add({message : 'An error occurred syncing.'});
+				setTimeout(function(){viewService.close("error",3500);}, 7000);
 			};
 
 		};
@@ -146,9 +145,10 @@
 			var self = this;
 			
 			self.fiatCurrency = ko.observableArray([]);
+			self.editHistory = ko.observableArray([]);
 			
 			self.addCurrency = function(currency, isSelected){
-				self.fiatCurrency.push({name : currency, selected : isSelected});
+				self.fiatCurrency.push({name : currency, selected : ko.observable(isSelected)});
 			};
 			
 			self.save = function(){
@@ -167,15 +167,60 @@
 				}
 			
 				prefs.store(noop, noop, "defaults", JSON.stringify(result));
+				
+				self.clearEditHistory();
+			};
+			
+			self.clearEditHistory = function(){
+			
+				// clear the edit history ;)
+				while(self.editHistory().length > 0){
+					self.editHistory().pop();
+				}
+			
 			};
 			
 			self.cancel = function(){
+			
+				while(self.editHistory().length > 0){
+					var item = self.editHistory().pop();
+					var currentIndex = self.findEditItemIndex(item.name);
+					if(currentIndex != -1){
+						var selected = item.selected;
+						self.fiatCurrency()[currentIndex].selected(selected);
+					}
+				}
+				
+				self.clearEditHistory();
 				self.fiatCurrency.valueHasMutated();
+				
+			};
+			
+			self.findEditItemIndex = function(itemName){
+
+				for(var i = 0; i < self.fiatCurrency().length; i++){
+					var item = self.fiatCurrency()[i];
+					if(item.name == itemName){
+						return i;
+					}
+				}
+				
+				return -1;
 			};
 			
 			self.toggle = function(item){
-				alert(item.name);
+				self.editHistory.push({name : item.name, selected : item.selected()});
+				if(item.selected()){
+					item.selected(false);
+				}else{
+					item.selected(true);
+				}
+				self.fiatCurrency.valueHasMutated();
 			};
+			
+			self.settingStatus = ko.pureComputed(function(object){
+				return 'selectedBadge';
+			}, this);
 
 		};
 		
