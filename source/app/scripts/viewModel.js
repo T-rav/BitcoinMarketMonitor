@@ -308,33 +308,10 @@
 						viewModel.data = data;
 
 						if(init || viewModel.fiatCurrency().length === 0){
-							var defaults = "";
-							prefs.fetch(function (storedValue) {
-											defaults = JSON.eval(storedValue);
-										}, 
-										function (retrieveError) {
-										}, 
-										"defaults");
-						
-						
-							$.each(data, function(k,v){
-								// TODO : Populate into repository
-								//self.fiatCurrency.push({name : currency});
-								// TODO : Abstract out to event that is triggered
-								viewModel.addCurrency(k);
-								// TODO : Abstract out of there 
-								var isSelected = true;
-								try{
-									isSelected = defaults[k]["selected"];
-								}catch(e){
-									isSelected = true;
-									console.log("ERROR -> " + e);
-								}
-								settingsViewModel.addCurrency(k, isSelected);
-							});
 							
-							// TODO : Abstract to view init
-							viewModel.setExchangeData("USD");
+							var defaults = self.fetchDefaults();
+						
+							self.initModel(data);
 						}else{
 							// TODO : Abstract to event that is triggered 
 							viewModel.setExchangeData(viewModel.currency());
@@ -351,6 +328,41 @@
 						viewModel.showError();
 					}
 				});	
+			
+			};
+			
+			self.fetchDefaults = function(){
+				var defaults = "";
+				prefs.fetch(function (storedValue) {
+								defaults = JSON.eval(storedValue);
+							}, 
+							function (retrieveError) {
+							}, 
+							"defaults");
+				return defaults;
+			
+			};
+			
+			self.initModel = function(data){
+			
+				$.each(data, function(k,v){
+					// TODO : Populate into repository
+					//self.fiatCurrency.push({name : currency});
+					// TODO : Abstract out to event that is triggered
+					viewModel.addCurrency(k);
+					// TODO : Abstract out of there 
+					var isSelected = true;
+					try{
+						isSelected = defaults[k]["selected"];
+					}catch(e){
+						isSelected = true;
+						console.log("ERROR -> " + e);
+					}
+					settingsViewModel.addCurrency(k, isSelected);
+				});
+				
+				// TODO : Abstract to view init
+				viewModel.setExchangeData("USD");
 			
 			};
 			
