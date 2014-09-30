@@ -156,9 +156,9 @@
 				
 				for(var i = 0; i < self.fiatCurrency().length; i++){
 					var entry = self.fiatCurrency()[i];
-					result[entry.name] = entry.selected;
+					result[i] = {"name" : entry.name, "selected" : entry.selected()};
 				}
-			
+				
 				prefs.store(noop, noop, "defaults", JSON.stringify(result));
 				
 				self.clearEditHistory();
@@ -308,10 +308,9 @@
 						viewModel.data = data;
 
 						if(init || viewModel.fiatCurrency().length === 0){
-							
 							var defaults = self.fetchDefaults();
-						
-							self.initModel(data);
+							self.initModel(data, defaults);
+							
 						}else{
 							// TODO : Abstract to event that is triggered 
 							viewModel.setExchangeData(viewModel.currency());
@@ -333,37 +332,48 @@
 			
 			self.fetchDefaults = function(){
 				var defaults = "";
-				prefs.fetch(function (storedValue) {
-								defaults = JSON.eval(storedValue);
-							}, 
-							function (retrieveError) {
-							}, 
-							"defaults");
+				prefs.fetch(function (value) {
+					defaults = JSON.parse(value);
+				}, function (error) {}, "defaults");
 				return defaults;
-			
 			};
 			
-			self.initModel = function(data){
-			
+			self.initModel = function(data, defaults){
+
 				$.each(data, function(k,v){
 					// TODO : Populate into repository
 					//self.fiatCurrency.push({name : currency});
 					// TODO : Abstract out to event that is triggered
 					viewModel.addCurrency(k);
-					// TODO : Abstract out of there 
-					var isSelected = true;
-					try{
-						isSelected = defaults[k]["selected"];
-					}catch(e){
-						isSelected = true;
-						console.log("ERROR -> " + e);
-					}
+					var isSelected = self.isDefaultSelected(k,defaults);
 					settingsViewModel.addCurrency(k, isSelected);
 				});
 				
 				// TODO : Abstract to view init
 				viewModel.setExchangeData("USD");
 			
+			};
+			
+			self.isDefaultSelected = function(itemName,defaults){
+				// TODO : Abstract out of there 
+				var isSelected = true;
+				var idx = self.findDefaultIndex(itemName, defaults);
+				if(idx >= 0){
+					isSelected = defaults[idx];
+				}
+				return isSelected;
+			};
+			
+			self.findDefaultIndex = function(itemName, defaults){
+
+				for(var i = 0; i < defaults.length; i++){
+					var item = defaults[i];
+					if(item.name == itemName){
+						return i;
+					}
+				}
+				
+				return -1;
 			};
 			
 		};
