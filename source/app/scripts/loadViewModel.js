@@ -16,7 +16,7 @@ function updateProgress(initProgress, incAmount){
 	self.update = function(messageModel){
 		self.progress = self.progress + self.incAmount;
 		self.incCount++;
-		$(".progress-bar").css( "width", self.progress + "px" );
+		$(".progress-bar").css( "width", self.progress + "%" );
 		if((self.incCount % 4) == 0 && self.messageCount < self.messages.length){
 			// pick a new message
 			messageModel.message(self.messages[self.messageCount]);

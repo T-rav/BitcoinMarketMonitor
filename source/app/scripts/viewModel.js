@@ -1,4 +1,4 @@
- function ViewModel(viewService){
+ function ViewModel(viewService, settingsViewModel){
 			var self = this;
 			// set the service to use ;)
 			self.viewService = viewService;
@@ -17,16 +17,22 @@
 								{title:'Average',sortKey:'avg'},
 								{title:'Volume',sortKey:'vol'}
 						   ];				
-			self.fiatCurrency = ko.observableArray([]);
 			self.exchangeState = ko.observableArray([]);
-			
+
 			self.init = function(){
 				viewService.initState();
-				//viewService.fetchData(true, self);
 			};
 
+			self.fiatCurrency = ko.computed(function(){
+				//return settingsViewModel.fiatCurrency();
+				var result = ko.utils.arrayFilter(settingsViewModel.fiatCurrency(), function(item) {
+					return item.selected();
+				});
+				return result;
+			}, self);
+
 			self.addCurrency = function(currency){
-				self.fiatCurrency.push({name : currency});
+				settingsViewModel.fiatCurrency().push({name : currency});
 			};
 					
 			self.setExchangeData = function(key){
@@ -341,14 +347,12 @@
 					// TODO : Populate into repository
 					//self.fiatCurrency.push({name : currency});
 					// TODO : Abstract out to event that is triggered
-					viewModel.addCurrency(k);
 					var isSelected = self.isDefaultSelected(k,defaults);
 					settingsViewModel.addCurrency(k, isSelected);
 				});
 				
 				// TODO : Abstract to view init
 				viewModel.setExchangeData("USD");
-			
 			};
 			
 			self.isDefaultSelected = function(itemName,defaults){
