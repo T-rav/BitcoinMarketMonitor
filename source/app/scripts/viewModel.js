@@ -156,14 +156,7 @@
 				
 				for(var i = 0; i < self.fiatCurrency().length; i++){
 					var entry = self.fiatCurrency()[i];
-					var selected = false;
-					try{
-						var foo = self.selectedFiatCurrency()[entry];
-						selected = true;
-					}catch(e){
-						console.log("ERROR -> " + e);
-					}
-					result[name] = entry.selected;
+					result[entry.name] = entry.selected;
 				}
 			
 				prefs.store(noop, noop, "defaults", JSON.stringify(result));
@@ -234,8 +227,8 @@
 			
 			// TODO : Create scheduling service instead ;)
 			self.init = function(viewModel, settingsViewModel){
-				setTimeout(function(){self.timedFetch(viewModel, settingsViewModel)}, 10);
-				//setTimeout(function(){self.displayNotification("BTC is on the move...")}, 1000);
+				setTimeout(function(){self.timedFetch(viewModel, settingsViewModel);}, 10);
+				//setTimeout(function(){self.displayNotification("BTC is on the move...");}, 10000);
 			};
 
 			// TODO : Abstract to a data repository
@@ -317,7 +310,7 @@
 						if(init || viewModel.fiatCurrency().length === 0){
 							var defaults = "";
 							prefs.fetch(function (storedValue) {
-											prefsObject = JSON.eval(storedValue);
+											defaults = JSON.eval(storedValue);
 										}, 
 										function (retrieveError) {
 										}, 
