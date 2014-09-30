@@ -156,7 +156,8 @@
 				
 				for(var i = 0; i < self.fiatCurrency().length; i++){
 					var entry = self.fiatCurrency()[i];
-					result[i] = {"name" : entry.name, "selected" : entry.selected()};
+					var selected = entry.selected();
+					result[i] = {"name" : entry.name, "selected" : selected};
 				}
 				
 				prefs.store(noop, noop, "defaults", JSON.stringify(result));
@@ -183,10 +184,7 @@
 						self.fiatCurrency()[currentIndex].selected(selected);
 					}
 				}
-				
 				self.clearEditHistory();
-				self.fiatCurrency.valueHasMutated();
-				
 			};
 			
 			self.findEditItemIndex = function(itemName){
@@ -208,7 +206,6 @@
 				}else{
 					item.selected(true);
 				}
-				self.fiatCurrency.valueHasMutated();
 			};
 			
 			self.settingStatus = ko.pureComputed(function(object){
@@ -359,7 +356,8 @@
 				var isSelected = true;
 				var idx = self.findDefaultIndex(itemName, defaults);
 				if(idx >= 0){
-					isSelected = defaults[idx];
+					isSelected = defaults[idx].selected;
+					//isSelected = true;
 				}
 				return isSelected;
 			};
