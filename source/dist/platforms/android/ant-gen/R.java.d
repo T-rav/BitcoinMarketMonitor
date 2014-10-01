@@ -1,11 +1,6 @@
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-gen\com\kungfuactiongrip\btcmarketmonitor\R.java \
  : F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\icon.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\icon2.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\icon3.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\loading.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\loading2.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\loading3.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\loading4.9.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-land-hdpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-land-ldpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-land-mdpi\screen.png \
@@ -18,10 +13,6 @@ F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\valu
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\xml\config.xml \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\icon.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\icon2.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\icon3.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\loading.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\loading2.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\loading3.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable-land-hdpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable-land-ldpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable-land-mdpi\screen.png \
