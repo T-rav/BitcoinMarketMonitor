@@ -17,3 +17,6 @@
 .lastSync{font-size:10px;margin-left:5px;position:fixed;bottom:5px;}
 .selectedBadge{background-color:#df691a;color:#ffffff;}
 .deselectedBadge{background-color:#4e5d6c; color:#ffffff;}
+.tableWrapper{position:fixed;top:120px;bottom:30px;font-size:13px;width:98%;overflow-y:scroll;overflow-x:hidden;}
+.headerWrapper{position:fixed;top:70px;height:50px;width:98%;}
+.tableContainer{width:98%;}
