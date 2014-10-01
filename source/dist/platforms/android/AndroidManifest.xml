@@ -16,8 +16,11 @@
             </intent-filter>
         </receiver>
         <activity android:launchMode="singleInstance" android:name="de.appplant.cordova.plugin.localnotification.ReceiverActivity" />
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:style/Theme.Translucent" />
     </application>
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

@@ -41,7 +41,7 @@
 		<div id="messageRegion" class="alert alert-dismissable alert-info top">
 			<span data-bind="text: message"></span>
 		</div>
-		
+		<!-- Ad unit ID : ca-app-pub-7845656758279006/9684182374 -->
 		<div id="progressRegion" class="progress progress-striped active middle">
 	       <div class="progress-bar" style="width: 2%"></div>
 	    </div>
@@ -65,7 +65,7 @@
 		
 		<div class="navdrawer-container promote-layer navbar navbar-inverse">
 		  <div class="navbar-header">
-			<h4 class="navbar-brand" data-toggle="collapse" data-target="#settingsMenu"><b>Settings</b>&nbsp;<span class="badge">2</span></h4>
+			<h4 class="navbar-brand" data-toggle="collapse" data-target="#settingsMenu"><b>Settings</b>&nbsp;<span class="badge">1</span></h4>
 		  </div>
 		  <div id="settingsMenu" class="navbar-collapse collapse">
 			<form>
@@ -92,7 +92,12 @@
 		
 		<main class="main-container">
 			<div class="headerWrapper">
-				<div style="margin-left:5px;"><b>Currency</b> : <span data-bind="text: currency"></span> &nbsp;<span class="badge" data-bind="text: exchangeState().length"></span></div>
+				<div style="margin-left:5px;">
+					<b>Currency</b> : 
+					<span data-bind="text: currency"></span> 
+					&nbsp;&nbsp;<span class="badge" data-bind="text: exchangeState().length"></span>
+					<!--<span style="float:right;" data-bind="click: displayAbout"><img src="images/weighted-web.svg" height="24" width="24" ></span>-->
+				</div>
 				<table class="table table-striped" style="font-size:13px;">
 					<thead>
 						<tr class="tableRow" data-bind="foreach: headers">
@@ -105,7 +110,7 @@
 				<table class="table table-striped tableContainer">
 					<tbody data-bind="foreach:exchangeState">
 						<tr>
-							<td class="tableCell" data-bind="text: symbol"> </td>
+							<td class="tableCell" data-bind="text: symbol, click: $parent.marketView"> </td>
 							<td class="tableCell" data-bind="text: close"> </td>
 							<td class="tableCell" data-bind="text: lastTradeMinutes"> </td>
 							<td class="tableCell" data-bind="text: avg"> </td>
@@ -126,6 +131,55 @@
 		</div>
 	</div>
 	
+	<!-- Market View -->
+	<div id="market" class="settings-container collapse">
+		<header class="app-bar promote-layer" style="margin-left:10px;">
+			<h4>Exchange: <strong data-bind="text: symbol"></strong></h4>
+			<hr/>
+		</header>
+		<div style="margin-left:10px;">
+			<div class="marketLeft">
+				Currency: <strong><span data-bind="text: currency"></span></strong>
+			</div>
+			<div class="marketRight">
+				Volume: <span data-bind="text: volume"></span>
+			</div>
+			<div class="marketLeft">
+				High: <span data-bind="text: high"></span>
+			</div>
+			<div class="marketRight">
+				Low: <span data-bind="text: low"></span>
+			</div>
+			<div class="marketLeft">
+				Average: <span data-bind="text: avg"></span>
+			</div>
+			<div class="marketRight">
+				Close: <span data-bind="text: close"></span>
+			</div>
+			<div class="marketLeft">
+				Ask: <span data-bind="text: ask"></span>
+			</div>
+			<div class="marketRight">
+				Bid: <span data-bind="text: bid"></span>
+			</div>
+			<div class="marketLeft">
+				Last Trade: <span data-bind="text: lastTradeTime"></span>
+			</div>
+			<!--
+			<div class="marketRight"> 
+				Trend:
+			</div>
+			<div>
+				Graphs to go here ;)
+			</div-->
+			<div  class="form-group" style="margin-top:25px;">
+			  <div class="col-lg-10 col-lg-offset-2">
+				<button type="submit" class="btn btn-primary" style="float:right;" data-bind="click: closeMarketView">Ok</button>
+			  </div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- Default View -->
 	<!-- TODO : Build defaults model, use knockout to bind options in drop down -->
 	<div id="defaults" class="settings-container collapse">
@@ -136,12 +190,18 @@
 		<form class="form-horizontal main-container">
 			<fieldset>
 				<div class="form-group">
-				  <label for="select" class="col-lg-2 control-label" style="margin-left:5px;">Currencies</label> <span class="badge" data-bind="click: toggleLoadCurrency, css: { selectedBadge: isDefaultSelected, deselectedBadge: !isDefaultSelected }">Set Default</span>
+				  <label class="col-lg-2 control-label" style="margin-left:5px;">Currencies</label> <span class="badge" data-bind="click: toggleLoadCurrency, css: { selectedBadge: isDefaultSelected, deselectedBadge: !isDefaultSelected }">Set Default</span>
 				  <div id="mainDefaults" class="col-lg-10" style="margin-bottom:3px;" data-bind="foreach: fiatCurrency">
 					<span class="badge" style="width:45px; line-height:25px; margin-bottom:5px; margin-left:5px;" data-bind="text: name,click: $parent.toggle, css: { selectedBadge: selected, deselectedBadge: !selected }"></span>
 				  </div>
 				  <div id="loadDefaults" class="col-lg-10 collapse" style="margin-bottom:3px;" data-bind="foreach: defaultFiatCurrency">
 					<span class="badge deselectedBadge" style="width:45px; line-height:25px; margin-bottom:5px; margin-left:5px;" data-bind="text: name, click: $parent.toggleDefault, css: { selectedBadge: selected, deselectedBadge: !selected }"></span>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="syncInterval" class="col-lg-2 control-label">Sync Interval in minutes</label>
+				  <div class="col-lg-10">
+					<input type="text" class="form-control" style="width:50px;" id="syncInterval" data-bind="value: syncInterval" placeholder="Time in Minutes">
 				  </div>
 				</div>
 				<div  class="form-group" style="margin-top:15px;">
@@ -190,12 +250,14 @@
 		var noop = function() {};
 		var viewService = new ViewService();
 		var settingsViewModel = new SettingsViewModel();
-		var viewModel = new ViewModel(viewService, settingsViewModel);
+		var marketViewModel = new MarketViewModel();
+		
+		var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel);
+		var message = new MessageModel();
+		var model = new UpdateProgress(10, 8);
 		
 		$(function() {
 				// -- load
-				var message = new messageModel();
-				var model = new updateProgress(10, 8);
 				setInterval(function(){model.update(message);}, 400);
 				ko.applyBindings(message, document.getElementById("load"));
 		
@@ -207,6 +269,9 @@
 				ko.applyBindings(viewModel, document.getElementById("main"));
 				viewService.init(viewModel, settingsViewModel);
 				viewModel.init();
+				
+				// -- market 
+				ko.applyBindings(marketViewModel, document.getElementById("market"));
 		});
 		
 	</script>
