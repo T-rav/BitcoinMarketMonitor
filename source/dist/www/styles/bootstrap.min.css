@@ -20,3 +20,5 @@
 .tableWrapper{position:fixed;top:120px;bottom:30px;font-size:13px;width:98%;overflow-y:scroll;overflow-x:hidden;}
 .headerWrapper{position:fixed;top:70px;height:50px;width:98%;}
 .tableContainer{width:98%;}
+.marketLeft{float:left;width:48%;}
+.marketRight{float:left;width:48%;}

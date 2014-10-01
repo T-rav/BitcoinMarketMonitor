@@ -1,10 +1,10 @@
-function messageModel(){
+function MessageModel(){
 	var self = this;
 	
 	self.message = ko.observable("Fetching market data.");
 }
 
-function updateProgress(initProgress, incAmount){
+function UpdateProgress(initProgress, incAmount){
 	var self = this;
 	
 	self.progress = initProgress;

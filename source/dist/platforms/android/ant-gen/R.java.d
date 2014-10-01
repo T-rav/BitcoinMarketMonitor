@@ -10,6 +10,7 @@ F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\draw
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-port-mdpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-port-xhdpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\values\strings.xml \
+F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\values\version.xml \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\xml\config.xml \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\icon.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\icon2.png \
