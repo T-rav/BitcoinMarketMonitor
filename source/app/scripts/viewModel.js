@@ -24,7 +24,6 @@
 			};
 
 			self.fiatCurrency = ko.computed(function(){
-				//return settingsViewModel.fiatCurrency();
 				var result = ko.utils.arrayFilter(settingsViewModel.fiatCurrency(), function(item) {
 					return item.selected();
 				});
@@ -37,6 +36,7 @@
 					
 			self.setExchangeData = function(key){
 				self.exchangeState(self.data[key]);
+				self.currency(key);
 			};
 			
 			self.setData = function(data, event){
@@ -151,10 +151,29 @@
 			var self = this;
 			
 			self.fiatCurrency = ko.observableArray([]);
+			self.defaultFiatCurrency = ko.observableArray([]);
 			self.editHistory = ko.observableArray([]);
+			
+			self.isDefaultSelected = ko.observable(false);
+			self.defaultCurrency = ko.observable("USD");
 			
 			self.addCurrency = function(currency, isSelected){
 				self.fiatCurrency.push({name : currency, selected : ko.observable(isSelected)});
+				self.defaultFiatCurrency.push({name : currency, selected : ko.observable(false)});
+			};
+			
+			self.setDefaultCurrency = function(currency){
+				self.defaultCurrency(currency);
+				
+				// TODO : Loop all existing options and deselect them ;)
+				for(var i = 0; i < self.defaultFiatCurrency().length; i++){
+					var item = self.defaultFiatCurrency()[i];
+					if(item.name == currency){
+						item.selected(true);
+					}else{
+						item.selected(false);
+					}
+				}
 			};
 			
 			self.save = function(){
@@ -166,7 +185,8 @@
 					result[i] = {"name" : entry.name, "selected" : selected};
 				}
 				
-				prefs.store(noop, noop, "defaults", JSON.stringify(result));
+				prefs.store(noop, noop, "fiatCurrencies", JSON.stringify(result));
+				prefs.store(noop, noop, "defaultCurrency", self.defaultCurrency());
 				
 				self.clearEditHistory();
 			};
@@ -178,6 +198,8 @@
 					self.editHistory().pop();
 				}
 			
+				// reset the default curreny menu option
+				self.isDefaultSelected(false);
 			};
 			
 			self.cancel = function(){
@@ -214,12 +236,26 @@
 				}
 			};
 			
+			self.toggleDefault = function(item){
+				self.setDefaultCurrency(item.name);
+			};
+			
 			self.settingStatus = ko.pureComputed(function(object){
 				return 'selectedBadge';
 			}, this);
 
+			self.toggleLoadCurrency = function(){
+				$("#mainDefaults").toggle();
+				$("#loadDefaults").toggle();
+				
+				if(self.isDefaultSelected()){
+					self.isDefaultSelected(false);
+				}else{
+					self.isDefaultSelected(true);
+				}
+			};
+			
 		};
-		
 		
 		function ViewService(){
 			var self = this;
@@ -311,8 +347,9 @@
 						viewModel.data = data;
 
 						if(init || viewModel.fiatCurrency().length === 0){
-							var defaults = self.fetchDefaults();
-							self.initModel(data, defaults);
+							var currencyList = self.fetchCurrencyList();
+							var loadCurrency = self.fetchDefaultCurrency();
+							self.initModel(data, currencyList, loadCurrency);
 							
 						}else{
 							// TODO : Abstract to event that is triggered 
@@ -333,43 +370,54 @@
 			
 			};
 			
-			self.fetchDefaults = function(){
-				var defaults = "";
+			self.fetchCurrencyList = function(){
+				var currencyList = "";
 				prefs.fetch(function (value) {
-					defaults = JSON.parse(value);
-				}, function (error) {}, "defaults");
-				return defaults;
+					currencyList = JSON.parse(value);
+				}, function (error) {}, "fiatCurrencies");
+				return currencyList;
 			};
 			
-			self.initModel = function(data, defaults){
+			self.fetchDefaultCurrency = function(){
+				var result = "";
+				prefs.fetch(function (value) {
+					result = value;
+				}, function (error) {}, "defaultCurrency");
+				if(result === undefined){
+					result = "USD";
+				}
+				return result;
+			};
+			
+			self.initModel = function(data, currencyList, defaultCurrency){
 
 				$.each(data, function(k,v){
 					// TODO : Populate into repository
 					//self.fiatCurrency.push({name : currency});
 					// TODO : Abstract out to event that is triggered
-					var isSelected = self.isDefaultSelected(k,defaults);
+					var isSelected = self.isCurrencySelected(k,currencyList);
 					settingsViewModel.addCurrency(k, isSelected);
 				});
 				
 				// TODO : Abstract to view init
-				viewModel.setExchangeData("USD");
+				settingsViewModel.setDefaultCurrency(defaultCurrency);
+				viewModel.setExchangeData(defaultCurrency);
 			};
 			
-			self.isDefaultSelected = function(itemName,defaults){
+			self.isCurrencySelected = function(itemName,currencyList){
 				// TODO : Abstract out of there 
 				var isSelected = true;
-				var idx = self.findDefaultIndex(itemName, defaults);
+				var idx = self.findCurrencyIndex(itemName, currencyList);
 				if(idx >= 0){
-					isSelected = defaults[idx].selected;
-					//isSelected = true;
+					isSelected = currencyList[idx].selected;
 				}
 				return isSelected;
 			};
 			
-			self.findDefaultIndex = function(itemName, defaults){
+			self.findCurrencyIndex = function(itemName, currencyList){
 
-				for(var i = 0; i < defaults.length; i++){
-					var item = defaults[i];
+				for(var i = 0; i < currencyList.length; i++){
+					var item = currencyList[i];
 					if(item.name == itemName){
 						return i;
 					}
