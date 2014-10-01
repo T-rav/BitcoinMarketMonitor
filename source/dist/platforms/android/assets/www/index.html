@@ -38,7 +38,6 @@
 			<h2>Crypto<strong><br/>Markets Monitor</strong></h2>
 			<h5>StoneAge Technologies</h5>
 		</span>
-	
 		<div id="messageRegion" class="alert alert-dismissable alert-info top">
 			<span data-bind="text: message"></span>
 		</div>
@@ -83,7 +82,7 @@
 		  </div>
 		  <div id="currencyMenu" class="navbar-collapse collapse">
 			<!--<h5 data-toggle="collapse" data-target="#btc"><b>BTC</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h5>-->
-			<ul id="btc" class="nav navbar-nav" data-bind="foreach:fiatCurrency">
+			<ul id="btc" class="nav navbar-nav" data-bind="foreach:fiatCurrency()">
 			  <!-- data-bind="attr: { href: url }" -->
 			  <li class="listMenuItem"><a href='#' data-bind="text: name,click: $parent.setData"></a></li>
 			</ul>
@@ -131,7 +130,7 @@
 		<form class="form-horizontal main-container">
 			<fieldset>
 				<div class="form-group">
-				  <label for="select" class="col-lg-2 control-label">Currencies - What do you want visible in the menu?</label>
+				  <label for="select" class="col-lg-2 control-label">Currencies</label>
 				  <div class="col-lg-10" style="margin-bottom:3px;" data-bind="foreach: fiatCurrency">
 					<span class="badge" style="width:45px; line-height:25px; margin-bottom:5px; margin-left:5px;" data-bind="text: name,click: $parent.toggle, css: { selectedBadge: selected, deselectedBadge: !selected }"></span>
 				  </div>
@@ -163,6 +162,7 @@
 		</form>
     </div>
 	
+	<script src="scripts/001_WebHelper.js"></script>
 	<script src="scripts/002_PrefsHelper.js"></script>
 	<script src="scripts/998_app.js"></script>
 	<script src="scripts/999_main.js"></script>
@@ -179,14 +179,13 @@
 		var prefs = window.PrefsHelper;
 		var noop = function() {};
 		var viewService = new ViewService();
-		var settingsViewModel = new SettingsViewModel(prefs);
-		var viewModel = new ViewModel(viewService);
 		var settingsViewModel = new SettingsViewModel();
+		var viewModel = new ViewModel(viewService, settingsViewModel);
 		
 		$(function() {
 				// -- load
 				var message = new messageModel();
-				var model = new updateProgress(10, 30);
+				var model = new updateProgress(10, 8);
 				setInterval(function(){model.update(message);}, 400);
 				ko.applyBindings(message, document.getElementById("load"));
 		

@@ -26,9 +26,9 @@
         },
         show: function() {
             // define splash and content -id elements for this functionality
-			//$('#main').show();
-			$('#load').collapse('show');
-			setTimeout(function(){$('#load').collapse('hide'); setTimeout(function(){$('#main').show();},500);},4500);
+			$('#main').show();
+			//$('#load').collapse('show');
+			//setTimeout(function(){$('#load').collapse('hide'); setTimeout(function(){$('#main').show();},500);},4500);
         },
         fixBottomMenuItemsForSmallerScreens: function() {
             // if you have a ul.bottom, this helps to place it on smaller screens
