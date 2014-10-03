@@ -351,7 +351,11 @@
 			
 			self.timedFetch = function(viewModel, settingsViewModel){
 				viewModel.lastSync("In Progress...");
-				self.fetchData(false, viewModel, settingsViewModel);
+				try{
+					self.fetchData(false, viewModel, settingsViewModel);
+				}catch(e){
+					viewModel.setLastSync(true);
+				}
 				setInterval(function(){self.timedFetch(viewModel, settingsViewModel)}, 30000);
 			};
 			
