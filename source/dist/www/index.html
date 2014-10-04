@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="An application to monitor BTC exchanges around the world.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Crypto Market Monitor</title>
+    <title>Crypto Stats</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -35,7 +35,7 @@
   
 	<div id="load" class=" main-container collapse">
 		<span style="position:fixed;top:40%;left:20%;">
-			<h2>Crypto<strong><br/>Markets Monitor</strong></h2>
+			<h2>Crypto<strong><br/>Stats</strong></h2>
 			<h5>StoneAge Technologies</h5>
 		</span>
 		<div id="messageRegion" class="alert alert-dismissable alert-info top">
@@ -52,7 +52,7 @@
 		<header class="app-bar promote-layer">
 		  <div class="app-bar-container">
 			<span style="margin-left:-2px;">
-				<h2 class="logo">Crypto<strong>Markets</strong></h2>
+				<h2 class="logo">Crypto<strong>Stats</strong></h2>
 			</span>
 			<span style="float:right;">
 				<button style="width:25px;" data-bind="click: displayAbout"><img src="images/info.svg""></button>
@@ -185,7 +185,7 @@
 		<form class="form-horizontal main-container">
 			<fieldset>
 				<div class="form-group">
-				  <label for="select" class="col-lg-2 control-label" style="margin-left:5px;">Currencies</label> <span class="badge" data-bind="click: toggleLoadCurrency, css: { selectedBadge: isDefaultSelected, deselectedBadge: !isDefaultSelected }">Set Default</span>
+				  <label for="select" class="col-lg-2 control-label" style="margin-left:5px; font-size:16px;">Currencies</label> <span class="badge" data-bind="click: toggleLoadCurrency, css: { selectedBadge: isDefaultSelected, deselectedBadge: !isDefaultSelected }">Set Default</span>
 				  <div id="mainDefaults" class="col-lg-10" style="margin-bottom:3px;" data-bind="foreach: fiatCurrency">
 					<span class="badge" style="width:45px; line-height:25px; margin-bottom:5px; margin-left:5px;" data-bind="text: name,click: $parent.toggle, css: { selectedBadge: selected, deselectedBadge: !selected }"></span>
 				  </div>
