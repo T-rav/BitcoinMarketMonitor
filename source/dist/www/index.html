@@ -35,7 +35,7 @@
   
 	<div id="load" class=" main-container collapse">
 		<span style="position:fixed;top:40%;left:20%;">
-			<h2>Crypto<strong><br/>Stats</strong></h2>
+			<h2>Crypto<strong>Stats</strong></h2>
 			<h5>StoneAge Technologies</h5>
 		</span>
 		<div id="messageRegion" class="alert alert-dismissable alert-info top">
@@ -92,7 +92,12 @@
 		
 		<main class="main-container">
 			<div class="headerWrapper">
-				<div style="margin-left:5px;"><b>Currency</b> : <span data-bind="text: currency"></span> &nbsp;<span class="badge" data-bind="text: exchangeState().length"></span></div>
+				<div style="margin-left:5px;">
+					<b>Currency</b> : 
+					<span data-bind="text: currency"></span> 
+					&nbsp;&nbsp;<span class="badge" data-bind="text: exchangeState().length"></span>
+					<!--<span style="float:right;" data-bind="click: displayAbout"><img src="images/weighted-web.svg" height="24" width="24" ></span>-->
+				</div>
 				<table class="table table-striped" style="font-size:13px;">
 					<thead>
 						<tr class="tableRow" data-bind="foreach: headers">
@@ -167,7 +172,7 @@
 			<div>
 				Graphs to go here ;)
 			</div-->
-			<div  class="form-group" style="margin-top:15px;">
+			<div  class="form-group" style="margin-top:25px;">
 			  <div class="col-lg-10 col-lg-offset-2">
 				<button type="submit" class="btn btn-primary" style="float:right;" data-bind="click: closeMarketView">Ok</button>
 			  </div>
@@ -185,12 +190,18 @@
 		<form class="form-horizontal main-container">
 			<fieldset>
 				<div class="form-group">
-				  <label for="select" class="col-lg-2 control-label" style="margin-left:5px; font-size:16px;">Currencies</label> <span class="badge" data-bind="click: toggleLoadCurrency, css: { selectedBadge: isDefaultSelected, deselectedBadge: !isDefaultSelected }">Set Default</span>
+				  <label class="col-lg-2 control-label" style="margin-left:5px;">Currencies</label> <span class="badge" data-bind="click: toggleLoadCurrency, css: { selectedBadge: isDefaultSelected, deselectedBadge: !isDefaultSelected }">Set Default</span>
 				  <div id="mainDefaults" class="col-lg-10" style="margin-bottom:3px;" data-bind="foreach: fiatCurrency">
 					<span class="badge" style="width:45px; line-height:25px; margin-bottom:5px; margin-left:5px;" data-bind="text: name,click: $parent.toggle, css: { selectedBadge: selected, deselectedBadge: !selected }"></span>
 				  </div>
 				  <div id="loadDefaults" class="col-lg-10 collapse" style="margin-bottom:3px;" data-bind="foreach: defaultFiatCurrency">
 					<span class="badge deselectedBadge" style="width:45px; line-height:25px; margin-bottom:5px; margin-left:5px;" data-bind="text: name, click: $parent.toggleDefault, css: { selectedBadge: selected, deselectedBadge: !selected }"></span>
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="syncInterval" class="col-lg-2 control-label">Sync Interval in minutes</label>
+				  <div class="col-lg-10">
+					<input type="text" class="form-control" style="width:50px;" id="syncInterval" data-bind="value: syncInterval" placeholder="Time in Minutes">
 				  </div>
 				</div>
 				<div  class="form-group" style="margin-top:15px;">
