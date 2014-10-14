@@ -374,7 +374,7 @@
 
 		self.fetchData = function(init, viewModel, settingsViewModel){
 			$.ajax({
-				url : "http://kungfuactiongrip.com/bitcoincharts/?jsoncallback=?",
+				url : "http://stoneagetechnologies.com/bitcoincharts/?jsoncallback=?",
 				dataType : "jsonp",
 				crossDomain : true,
 				async: true,
