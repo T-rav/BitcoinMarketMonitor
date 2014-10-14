@@ -10,15 +10,36 @@
 	// http://feeds.feedburner.com/BitcoinMagazine
 	// https://www.cryptocoinsnews.com/category/news/feed/
 	
-	$feedburner = "http://feeds.feedburner.com/BitcoinMagazine";
-	$cryptonews = "https://www.cryptocoinsnews.com/category/news/feed/";
+	$result = array();
+	$feed = array("http://feeds.feedburner.com/BitcoinMagazine","https://www.cryptocoinsnews.com/category/news/feed/", "http://bitcoinexaminer.org/feed/", "http://feeds.feedburner.com/CoinDesk");
 	
+<<<<<<< HEAD
 	$data = fetchData($feedburner);
 	$data = str_replace("content:encoded","content",$data);
 	$result = processRSS($data);
 	var_dump($result);
 	//fetchRawRSS($feedburner);
 	//fetchRawRSS($cryptonews);
+=======
+	foreach ($feed as &$value) {
+		$data = fetchData($value);
+		processRSS($data, &$result);
+	}
+	
+	// Now sort it all by pub date ;)
+	uasort($result, 'sortByPubDate');
+	
+	var_dump($result);
+	
+	function sortByPubDate($a, $b){
+	
+		if($a["pupDate"] == $b["pupDate"]){
+			return 0;
+		}
+	
+		return ($a["pupDate"] < $b["pupDate"]) ? 1 : -1;
+	}
+>>>>>>> e89bac6e246fa1cea183f4771fb09e66a62585c5
 	
 	function fetchData($url){
 	
@@ -27,10 +48,16 @@
 		return $data;
 	}
 	
-	function processRSS($data){
+	function processRSS($data, $result){
 		
+<<<<<<< HEAD
 		$xml = simplexml_load_string($data, null, LIBXML_NOCDATA);
 		$result = array();
+=======
+		$data = str_replace("content:encoded","content",$data);
+		
+		$xml = simplexml_load_string($data, null, LIBXML_NOCDATA);
+>>>>>>> e89bac6e246fa1cea183f4771fb09e66a62585c5
 		$pos = 0;
 		foreach($xml->channel->item as $item){
 		
@@ -38,17 +65,26 @@
 			$link = (string)$item->link;
 			$guid = (string)$item->guid;
 			$pupDate = (string)$item->pubDate;
+<<<<<<< HEAD
 			$content = pruneSection($item->content, "<p>The post <a rel=\"nofollow" , "height=\"1\" width=\"1\"/>");
 			$content = pruneRubish($content);
 			$description = buildDescription($content);
 
 			if(strlen($title) <= 60){
+=======
+			$description = pruneDescription((string)$item->description);
+
+			if(strlen($title) <= 80){
+>>>>>>> e89bac6e246fa1cea183f4771fb09e66a62585c5
 				$story = array();
 				$story["title"] = $title;
 				$story["guid"] = $link;
 				$story["pupDate"] = $pupDate;
 				$story["description"] = $description;
+<<<<<<< HEAD
 				$story["content"] = $content;
+=======
+>>>>>>> e89bac6e246fa1cea183f4771fb09e66a62585c5
 				$result[] = $story;
 			}	
 		}
@@ -56,6 +92,18 @@
 		return $result;
 	}
 	
+<<<<<<< HEAD
+=======
+	function pruneDescription($description){
+		$result = str_replace("[&#8230;]", "", $description);
+		$result = pruneSection($result, "<p>The post <a rel=\"nofollow" , "</p>");
+		$result = str_replace("<p>","", $result);
+		$result = str_replace("</p>","", $result);
+		
+		return trim($result);
+	}
+
+>>>>>>> e89bac6e246fa1cea183f4771fb09e66a62585c5
 	function buildDescription($content){
 	
 		$description = substr($content, 0, 200);
