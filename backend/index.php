@@ -64,6 +64,7 @@
 	// http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=2
 	// USD = 2, 
 	
+	// BEST SRC : https://www.quandl.com/c/markets/bitcoin-data
 	if(updateCache()){
 		
 		$data = fetchData();
@@ -190,6 +191,5 @@
 	
 		return $data;
 	}
-
 
 ?>

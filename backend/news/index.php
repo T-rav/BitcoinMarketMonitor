@@ -21,16 +21,7 @@
 	// Now sort it all by pub date ;)
 	uasort($result, 'sortByPubDate');
 	
-	//$feedburner = "http://feeds.feedburner.com/BitcoinMagazine";
-	//$cryptonews = "https://www.cryptocoinsnews.com/category/news/feed/";
-	
-	//$data = fetchData($feedburner);
-	//$data = fetchData($cryptonews);
-	//$data = str_replace("content:encoded","content",$data);
-	//$result = processRSS($data);
 	var_dump($result);
-	//fetchRawRSS($feedburner);
-	//fetchRawRSS($cryptonews);
 	
 	function sortByPubDate($a, $b){
 	
