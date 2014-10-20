@@ -43,7 +43,7 @@
   main.addEventListener('click', closeMenu);
   menuBtn.addEventListener('click', toggleMenu);
   navdrawerContainer.addEventListener('click', function (event) {
-    if (event.target.nodeName === 'A' || event.target.nodeName === 'LI') {
+    if (event.target.nodeName === 'A' || event.target.nodeName === 'LI' || event.target.innerHTML === 'News') {
       closeMenu();
     }
   });
