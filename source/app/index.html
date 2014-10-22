@@ -78,13 +78,15 @@
 				</form>
 			  </div>
 			  
-			  <!-- News Menu --> 
-			  <div id="news">
-				  <div class="navbar-header">
+			<!-- News Menu --> 
+			
+			<div id="news">
+				<div class="navbar-header">
 					<h4 id="newsId" class="navbar-brand"><b data-toggle="collapse" data-target="#newsRegion">News</b>&nbsp;<span class="badge" data-bind="text: headline().length"></span></h4>
-				  </div>
-			 </div>
-			 
+				</div>
+			</div>
+			
+			
 			<!-- Currencies Menu -->
 			<div class="navbar-header">
 				<h4 class="navbar-brand" data-toggle="collapse" data-target="#currencyMenu"><b>Currencies</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h4>
@@ -222,17 +224,17 @@
     </div>
 	
 	<div id="newsRegion" class="settings-container collapse">
-		<header class="app-bar promote-layer" style="margin-left:5px;">
+		<header class="app-bar promote-layer" style="margin-left:2px;">
 			<h4>
-			<span data-toggle="collapse" data-target="#newsRegion"><img src="images/chevron.svg" height="30" width="30" /></span> 
+			<span data-toggle="collapse" data-target="#newsRegion"><img src="images/chevron.svg" height="25" width="15" /></span> 
 			<strong>News</strong></h4>
 			<hr/>
 		</header>
 		<div class="list-group newsWrapper" data-bind="foreach:headline">
-			<a href="#" class="list-group-item" data-bind="css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:95%; margin-right:3px; margin-left:10px;">
+			<a href="#" class="list-group-item" data-bind="attr: { href: link } , css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:10px;">
 				<b class="list-group-item-heading" data-bind="text: title"></b>
 				<br/>
-				<span style="font-size:16px;">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</span>
+				<span style="font-size:12px;" data-bind="text: summary"></span>
 			</a>
 		</div>
     </div>

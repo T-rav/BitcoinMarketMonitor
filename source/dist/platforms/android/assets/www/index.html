@@ -14,7 +14,7 @@
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <meta name="apple-mobile-web-app-title" content="Crypto Stats">
     <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
@@ -55,7 +55,7 @@
 				<h2 class="logo">Crypto<strong>Stats</strong></h2>
 			</span>
 			<span style="float:right;">
-				<button style="width:25px;" data-bind="click: displayAbout"><img src="images/info.svg""></button>
+				<button style="width:25px;" data-toggle="collapse" data-target="#info"><img src="images/info.svg""></button>
 				<button style="width:35px; margin-right:10px;" class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
 			</span>
 			<section class="app-bar-actions">
@@ -63,31 +63,40 @@
 		  </div>
 		</header>
 		
+		<!-- Settings Menu -->
 		<div class="navdrawer-container promote-layer navbar navbar-inverse">
-		  <div class="navbar-header">
-			<h4 class="navbar-brand" data-toggle="collapse" data-target="#settingsMenu"><b>Settings</b>&nbsp;<span class="badge">1</span></h4>
-		  </div>
-		  <div id="settingsMenu" class="navbar-collapse collapse">
-			<form>
-				<ul class="nav navbar-nav">
-				  <li class="smallListMenuItem"><a href='#/settings/defaults' data-toggle="collapse" data-target="#defaults">Defaults</a></li>
-				  <!--<li class="smallListMenuItem"><a href='#/settings/notifications' data-toggle="collapse" data-target="#notification">Notifications</a></li>-->
+			  <div class="navbar-header">
+				<h4 class="navbar-brand" data-toggle="collapse" data-target="#settingsMenu"><b>Settings</b>&nbsp;<span class="badge">2</span></h4>
+			  </div>
+			  <div id="settingsMenu" class="navbar-collapse collapse">
+				<form>
+					<ul class="nav navbar-nav">
+					  <li class="smallListMenuItem"><a href='#/settings/defaults' data-toggle="collapse" data-target="#defaults">Defaults</a></li>
+					  <!--<li class="smallListMenuItem"><a href='#/settings/news' data-toggle="collapse" data-target="#newsRegion">News</a></li>-->
+					  <!--<li class="smallListMenuItem"><a href='#/settings/notifications' data-toggle="collapse" data-target="#notification">Notifications</a></li>-->
+					</ul>
+				</form>
+			  </div>
+			  
+			<!-- News Menu --> 
+			<!--
+			<div id="news">
+				<div class="navbar-header">
+					<h4 id="newsId" class="navbar-brand"><b data-toggle="collapse" data-target="#newsRegion">News</b>&nbsp;<span class="badge" data-bind="text: headline().length"></span></h4>
+				</div>
+			</div>
+			-->
+			
+			<!-- Currencies Menu -->
+			<div class="navbar-header">
+				<h4 class="navbar-brand" data-toggle="collapse" data-target="#currencyMenu"><b>Currencies</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h4>
+			</div>
+			<div id="currencyMenu" class="navbar-collapse collapse">
+				<!--<h5 data-toggle="collapse" data-target="#btc"><b>BTC</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h5>-->
+				<ul id="btc" class="nav navbar-nav" data-bind="foreach:fiatCurrency()">
+					<li class="listMenuItem"><a href='#' data-bind="text: name,click: $parent.setData"></a></li>
 				</ul>
-			</form>
-		  </div>
-		  
-		  <!-- Currencies Section -->
-		  <div class="navbar-header">
-			<h4 class="navbar-brand" data-toggle="collapse" data-target="#currencyMenu"><b>Currencies</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h4>
-		  </div>
-		  <div id="currencyMenu" class="navbar-collapse collapse">
-			<!--<h5 data-toggle="collapse" data-target="#btc"><b>BTC</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h5>-->
-			<ul id="btc" class="nav navbar-nav" data-bind="foreach:fiatCurrency()">
-			  <!-- data-bind="attr: { href: url }" -->
-			  <li class="listMenuItem"><a href='#' data-bind="text: name,click: $parent.setData"></a></li>
-			</ul>
-			<!--<h5 id="ltc"><b>LTC</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h5>-->
-		  </div>
+			</div>
 		</div>
 		
 		<main class="main-container">
@@ -126,7 +135,7 @@
 		<div  id="error" class="alert alert-dismissable alert-danger footer">
 		  <strong>Oh snap!</strong> <span>An error occurred syncing.</span><br/><span> Please ensure your wifi or mobile data is on.</span>
 		</div>
-		<div  id="info" class="alert alert-dismissable alert-info footer">
+		<div  id="info" class="alert alert-dismissable alert-info footer collapse">
 		  <strong>Hello.</strong> <span>This application monitors Bitcoin exchanges around the world trading in a variety of currencies and displays key trade info about each.</span>
 		</div>
 	</div>
@@ -213,6 +222,23 @@
 		    </fieldset>
 		</form>
     </div>
+	
+	<div id="newsRegion" class="settings-container collapse">
+		<header class="app-bar promote-layer" style="margin-left:2px;">
+			<h4>
+			<span data-toggle="collapse" data-target="#newsRegion"><img src="images/chevron.svg" height="25" width="15" /></span> 
+			<strong>News</strong></h4>
+			<hr/>
+		</header>
+		<div class="list-group newsWrapper" data-bind="foreach:headline">
+			<a href="#" class="list-group-item" data-bind="attr: { href: link } , css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:10px;">
+				<b class="list-group-item-heading" data-bind="text: title"></b>
+				<br/>
+				<span style="font-size:12px;" data-bind="text: summary"></span>
+			</a>
+		</div>
+    </div>
+	
 	<!--
 	<div id="notification" class="settings-container collapse">
 		<header class="app-bar promote-layer" style="margin-left:5px;">
@@ -243,6 +269,7 @@
     <script src="libs/docs.min.js"></script>
 	<script src="scripts/viewModel.js"></script>
 	<script src="scripts/loadViewModel.js"></script>
+	<script src="scripts/newsViewModel.js"></script>
 	
 	<script type="text/javascript">
 	
@@ -251,12 +278,15 @@
 		var viewService = new ViewService();
 		var settingsViewModel = new SettingsViewModel();
 		var marketViewModel = new MarketViewModel();
+		var newsViewModel = new NewsViewModel();
+		newsViewModel.init();
 		
-		var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel);
+		var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel);
 		var message = new MessageModel();
 		var model = new UpdateProgress(10, 8);
 		
 		$(function() {
+		
 				// -- load
 				setInterval(function(){model.update(message);}, 400);
 				ko.applyBindings(message, document.getElementById("load"));
@@ -272,6 +302,10 @@
 				
 				// -- market 
 				ko.applyBindings(marketViewModel, document.getElementById("market"));
+				
+				// -- news
+				ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
+				
 		});
 		
 	</script>

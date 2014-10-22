@@ -203,7 +203,7 @@
 			// TODO : Loop all existing options and deselect them ;)
 			for(var i = 0; i < self.defaultFiatCurrency().length; i++){
 				var item = self.defaultFiatCurrency()[i];
-				if(item.name == currency){
+				if(item.name === currency){
 					item.selected(true);
 				}else{
 					item.selected(false);
@@ -220,9 +220,15 @@
 				result[i] = {"name" : entry.name, "selected" : selected};
 			}
 			
+			var syncInterval = self.syncInterval();
+			if(isNaN(syncInterval) || syncInterval < 1){
+				syncInterval = 5;
+				self.syncInterval(syncInterval);
+			}
+			
 			prefs.store(noop, noop, "fiatCurrencies", JSON.stringify(result));
 			prefs.store(noop, noop, "defaultCurrency", self.defaultCurrency());
-			prefs.store(noop, noop, "syncInterval", self.syncInterval());
+			prefs.store(noop, noop, "syncInterval", syncInterval);
 			
 			self.clearEditHistory();
 		};
@@ -255,7 +261,7 @@
 
 			for(var i = 0; i < self.fiatCurrency().length; i++){
 				var item = self.fiatCurrency()[i];
-				if(item.name == itemName){
+				if(item.name === itemName){
 					return i;
 				}
 			}
@@ -351,7 +357,7 @@
 			viewModel.lastSync("In Progress...");
 			var interval = (settingsViewModel.syncInterval()*60) * 1000;
 			self.fetchData(false, viewModel, settingsViewModel);
-			setInterval(function(){self.timedFetch(viewModel, settingsViewModel)}, interval);
+			setTimeout(function(){self.timedFetch(viewModel, settingsViewModel)}, interval);
 		};
 		
 		self.displayNotification = function(message){
@@ -430,7 +436,7 @@
 			prefs.fetch(function (value) {
 				result = value;
 			}, function (error) {}, "syncInterval");
-			if(result === undefined){
+			if(result === undefined || result < 1){
 				result = 5;
 			}
 			return result;
@@ -467,7 +473,7 @@
 
 			for(var i = 0; i < currencyList.length; i++){
 				var item = currencyList[i];
-				if(item.name == itemName){
+				if(item.name === itemName){
 					return i;
 				}
 			}
