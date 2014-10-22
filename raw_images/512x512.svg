@@ -15,26 +15,29 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="512x512.svg">
+   sodipodi:docname="512x512.png"
+   inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\512x512.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
      bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     borderopacity="1"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="1"
      inkscape:cx="261.76278"
-     inkscape:cy="260.9823"
+     inkscape:cy="306.90909"
      inkscape:document-units="px"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer7"
      showgrid="false"
      inkscape:window-width="1165"
      inkscape:window-height="711"
-     inkscape:window-x="3"
-     inkscape:window-y="8"
+     inkscape:window-x="369"
+     inkscape:window-y="77"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
@@ -196,14 +199,18 @@ Id5hsu4u/PHlzAHg/wBoff3B9WM9WwAAAABJRU5ErkJggg==
      style="display:inline">
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:none"
-       d="M 38,348.78377 110.28986,289 173.85508,341.31081 195.04347,323.16216 210,335.97298 172.60868,364.7973 110.28986,314.62163 51.710146,368 z"
+       d="M 50,337.78377 110.28986,289 173.85508,341.31081 195.04347,323.16216 210,335.97298 172.60868,364.7973 110.28986,314.62163 58.710146,358 z"
        id="path3018"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="ccccccccc" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:none"
-       d="M 463.9562,178.05556 414.68613,223.27778 358.84671,176 326,205.80556 339.13869,220.19444 358.84671,198.61111 412.49635,250 476,195.52778 z"
+       d="M 462.9562,178.05556 414.68613,223.27778 358.84671,176 326,205.80556 339.13869,220.19444 358.84671,198.61111 412.49635,250 468,196.52778 z"
        id="path3846"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccc" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -239,7 +246,18 @@ Id5hsu4u/PHlzAHg/wBoff3B9WM9WwAAAABJRU5ErkJggg==
   </g>
   <g
      inkscape:groupmode="layer"
-     id="layer5"
-     inkscape:label="B Layer"
-     style="display:none" />
+     id="layer8"
+     inkscape:label="Single B"
+     style="display:inline">
+    <g
+       id="g6829-9"
+       style="font-size:202.67817688px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Whois;-inkscape-font-specification:Whois Medium"
+       transform="matrix(0.82425504,0,0,0.76445384,1992.6929,-46.671507)">
+      <path
+         inkscape:connector-curvature="0"
+         d="m -2126.0868,403.94435 0,19.89175 30.8767,0 0,14.25081 -30.8767,0 0,19.99072 28.7985,0 c 9.6984,2e-5 16.8568,-2.21018 21.4752,-6.63059 4.6842,-4.48633 7.0263,-11.31484 7.0264,-20.48553 -10e-5,-9.23659 -2.3422,-16.0321 -7.0264,-20.38658 -4.6184,-4.42032 -11.7768,-6.63051 -21.4752,-6.63058 l -28.7985,0 m 0,-60.76387 0,44.53378 26.6213,0 c 8.7747,9e-5 15.3063,-1.81425 19.5948,-5.44302 4.3544,-3.69456 6.5316,-9.30251 6.5317,-16.82387 -1e-4,-7.45517 -2.1773,-13.03013 -6.5317,-16.72491 -4.2885,-3.69452 -10.8201,-5.54185 -19.5948,-5.54198 l -26.6213,0 m -18.0115,-16.42802 45.9193,0 c 13.7229,1.5e-4 24.2791,3.16699 31.6685,9.50054 7.4552,6.33383 11.1828,15.33954 11.1829,27.01716 -10e-5,9.03881 -1.9134,16.23019 -5.7399,21.57414 -3.7607,5.34414 -9.3357,8.67592 -16.7249,9.99536 8.9066,2.11131 15.8011,6.5317 20.6834,13.26117 4.8822,6.66364 7.3233,15.00959 7.3234,25.03788 -10e-5,13.19523 -4.0576,23.3885 -12.1726,30.57986 -8.0491,7.19139 -19.529,10.78708 -34.4394,10.78708 l -47.7007,0 0,-36.41874 -17.0218,0 0,-14.25081 17.0218,0 0,-97.08364"
+         id="path6831-4"
+         style="font-weight:normal;font-stretch:semi-condensed;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans Semi-Condensed" />
+    </g>
+  </g>
 </svg>
