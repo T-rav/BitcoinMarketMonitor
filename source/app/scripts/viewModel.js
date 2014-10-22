@@ -26,8 +26,7 @@
 		self.headline = ko.computed(function(){
 			var result = newsViewModel.headline();
 			return result;
-		
-		});
+		}, self);
 
 		self.fiatCurrency = ko.computed(function(){
 			var result = ko.utils.arrayFilter(settingsViewModel.fiatCurrency(), function(item) {
@@ -54,7 +53,7 @@
 
 		self.setLastSync = function(isError){
 			var msg = viewService.renderSyncMessage(isError);
-			viewModel.lastSync(msg);			
+			self.lastSync(msg);			
 		};
 		
 		self.sort = function(header, event){

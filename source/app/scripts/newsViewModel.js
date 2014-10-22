@@ -14,13 +14,18 @@
 		};
 		
 		
-		self.init = function(){
+		self.init = function(newsService){
+			
+			self.headline().push(newsService.moqData());
+			
+			/*
 			self.headline().push({title : "Title 1", summary: "Summary 1", link : "Link 1"});
 			self.headline().push({title : "Title 2 - More", summary: "Summary 2", link : "Link 2"});
 			self.headline().push({title : "Title 3 - More", summary: "Summary 2", link : "Link 2"});
 			self.headline().push({title : "Title 4 - More", summary: "Summary 2", link : "Link 2"});
 			self.headline().push({title : "Title 5 - More", summary: "Summary 2", link : "Link 2"});
 			self.headline().push({title : "Title 6 - More", summary: "Summary 2", link : "Link 2"});
+			*/
 		};
 		
 		
@@ -38,6 +43,10 @@
 	function NewsService(){
 		var self = this;
 		
+		self.moqData = function(newsViewModel){
+			return {title : "Title 99 - MOQ", summary: "Summary 199190292", link : "Link 1"};
+		};
+		
 		self.fetchData = function(newsViewModel){
 			$.ajax({
 				url : "http://stoneagetechnologies.com/bitcoincharts/news/?jsoncallback=?",
@@ -47,18 +56,22 @@
 				success : function(data){
 					// TODO : Load view model with data ;)
 					// TODO : Set last sync time
-					$.each(data, function(k,v){
+					//$.each(data, function(k,v){
 						// TODO : Populate into repository
 						//self.fiatCurrency.push({name : currency});
 						// TODO : Abstract out to event that is triggered
 						//alert(v.description);
-						newsViewModel.addHeadline(v);
-					});
+						//newsViewModel.addHeadline({title : "Title 7 - Magic", summary: "Summary 2", link : "Link 2"});
+						newsViewModel.addHeadline({title : "Title 100 - DEV", summary: "Summary 2000 BYTES UNDER THE TSQL", link : "Link 1"});
+						//newsViewModel.addHeadline(v);
+					//});
 				},
 				error : function(){
 					
 				}
 			});	
+			
+			return {title : "Title 100 - DEV", summary: "Summary 2000 BYTES UNDER THE TSQL", link : "Link 1"};
 			
 		};
 	}

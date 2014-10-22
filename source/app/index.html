@@ -283,12 +283,12 @@
 			var newsViewModel = new NewsViewModel();
 			var newsService = new NewsService();
 			
-			var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel);
+			var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel, newsService);
 			var message = new MessageModel();
 			var model = new UpdateProgress(10, 8);
 	
 			// -- load
-			newsViewModel.init();
+			newsViewModel.init(newsService);
 			setInterval(function(){model.update(message);}, 400);
 			ko.applyBindings(message, document.getElementById("load"));
 	
@@ -305,7 +305,7 @@
 			ko.applyBindings(marketViewModel, document.getElementById("market"));
 			
 			// -- news
-			newsService.fetchData(newsViewModel);
+			//newsService.fetchData(newsViewModel);
 			ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
 				
 		});
