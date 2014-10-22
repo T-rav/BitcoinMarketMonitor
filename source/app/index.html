@@ -274,38 +274,39 @@
 	
 		var prefs = window.PrefsHelper;
 		var noop = function() {};
-		var viewService = new ViewService();
-		var settingsViewModel = new SettingsViewModel();
-		var marketViewModel = new MarketViewModel();
-		var newsViewModel = new NewsViewModel();
-		var newsService = new NewsService();
-		
-		var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel);
-		var message = new MessageModel();
-		var model = new UpdateProgress(10, 8);
 		
 		$(function() {
 		
-				// -- load
-				newsViewModel.init();
-				setInterval(function(){model.update(message);}, 400);
-				ko.applyBindings(message, document.getElementById("load"));
-		
-				// settings
-				ko.applyBindings(settingsViewModel, document.getElementById("defaults"));
-		
-				// -- main
-				viewModel.currency("USD"); // Text appears
-				ko.applyBindings(viewModel, document.getElementById("main"));
-				viewService.init(viewModel, settingsViewModel);
-				viewModel.init();
-				
-				// -- market 
-				ko.applyBindings(marketViewModel, document.getElementById("market"));
-				
-				// -- news
-				newsService.fetchData(newsViewModel);
-				ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
+			var viewService = new ViewService();
+			var settingsViewModel = new SettingsViewModel();
+			var marketViewModel = new MarketViewModel();
+			var newsViewModel = new NewsViewModel();
+			var newsService = new NewsService();
+			
+			var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel);
+			var message = new MessageModel();
+			var model = new UpdateProgress(10, 8);
+	
+			// -- load
+			newsViewModel.init();
+			setInterval(function(){model.update(message);}, 400);
+			ko.applyBindings(message, document.getElementById("load"));
+	
+			// settings
+			ko.applyBindings(settingsViewModel, document.getElementById("defaults"));
+	
+			// -- main
+			viewModel.currency("USD"); // Text appears
+			ko.applyBindings(viewModel, document.getElementById("main"));
+			viewService.init(viewModel, settingsViewModel);
+			viewModel.init();
+			
+			// -- market 
+			ko.applyBindings(marketViewModel, document.getElementById("market"));
+			
+			// -- news
+			newsService.fetchData(newsViewModel);
+			ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
 				
 		});
 		

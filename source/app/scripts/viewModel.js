@@ -391,7 +391,7 @@
 					if(init || viewModel.fiatCurrency().length === 0){
 						var currencyList = self.fetchCurrencyList();
 						var loadCurrency = self.fetchDefaultCurrency();
-						self.initModel(data, currencyList, loadCurrency);
+						self.initModel(data, currencyList, loadCurrency, settingsViewModel, viewModel);
 						
 					}else{
 						// TODO : Abstract to event that is triggered 
@@ -443,7 +443,7 @@
 		
 		};
 		
-		self.initModel = function(data, currencyList, defaultCurrency){
+		self.initModel = function(data, currencyList, defaultCurrency, settingsViewModel, viewModel){
 
 			$.each(data, function(k,v){
 				// TODO : Populate into repository
