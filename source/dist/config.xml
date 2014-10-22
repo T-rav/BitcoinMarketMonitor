@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.kungfuactiongrip.btcmarketmonitor" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.kungfuactiongrip.btcmarketmonitor" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Crypto Stats</name>
     <description>
         An application to monitor BTC prices around the world.
     </description>
-    <author email="tmfrisinger@gmail.com" href="http://www.stoneagetechnlogies.com/cryptomonitor">
+    <author email="tmfrisinger@gmail.com" href="http://www.stoneagetechnlogies.com/cryptostats">
         Travis Frisinger
     </author>
     <content src="index.html" />
