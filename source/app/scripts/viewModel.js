@@ -27,7 +27,7 @@
 			var result = newsViewModel.headline();
 			return result;
 		
-		}, self);
+		});
 
 		self.fiatCurrency = ko.computed(function(){
 			var result = ko.utils.arrayFilter(settingsViewModel.fiatCurrency(), function(item) {
@@ -143,7 +143,7 @@
 		
 		self.marketView = function(item){
 			$("#main").toggle();
-			$("#market").toggle(300);	
+			$("#market").toggle();	
 			marketViewModel.setViewData(item);
 		};
 	};
@@ -177,7 +177,7 @@
 		
 		self.closeMarketView = function(item){
 			$("#market").toggle();	
-			$("#main").toggle(300);
+			$("#main").toggle();
 		};
 	};
 	

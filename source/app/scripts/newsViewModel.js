@@ -5,10 +5,15 @@
 
 		// TODO : Add source attribute ;)
 		self.addHeadline = function(story){
-			self.headline().push({title : story.title, summary: story.summary, link : story.link});
+			try{
+				console.log(story.title);
+				self.headline().push({title : story.title, summary: story.description, link : story.guid, pupDate : story.pupDate});	
+			}catch(e){
+				console.log(e);
+			}
 		};
 		
-
+		
 		self.init = function(){
 			self.headline().push({title : "Title 1", summary: "Summary 1", link : "Link 1"});
 			self.headline().push({title : "Title 2 - More", summary: "Summary 2", link : "Link 2"});
@@ -17,6 +22,7 @@
 			self.headline().push({title : "Title 5 - More", summary: "Summary 2", link : "Link 2"});
 			self.headline().push({title : "Title 6 - More", summary: "Summary 2", link : "Link 2"});
 		};
+		
 		
 		self.isOddRow = function(index){
 		
@@ -37,7 +43,7 @@
 				url : "http://stoneagetechnologies.com/bitcoincharts/news/?jsoncallback=?",
 				dataType : "jsonp",
 				crossDomain : true,
-				async: true,
+				async: false,
 				success : function(data){
 					// TODO : Load view model with data ;)
 					// TODO : Set last sync time
@@ -45,6 +51,7 @@
 						// TODO : Populate into repository
 						//self.fiatCurrency.push({name : currency});
 						// TODO : Abstract out to event that is triggered
+						//alert(v.description);
 						newsViewModel.addHeadline(v);
 					});
 				},

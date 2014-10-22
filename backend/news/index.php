@@ -2,6 +2,8 @@
 	ini_set('display_errors', true);
 	error_reporting(E_ALL);
 
+	$jqueryFormat = isset($_GET['jsoncallback']);
+
 	// TODO : Fetch and persist to DB, every 4 hours pull via cron
 	// TODO : Trim the bitcoin mag linking out
 	// TODO : Persist to fs in js
@@ -11,7 +13,8 @@
 	// https://www.cryptocoinsnews.com/category/news/feed/
 	
 	$result = array();
-	$feed = array("http://feeds.feedburner.com/BitcoinMagazine","https://www.cryptocoinsnews.com/category/news/feed/", "http://bitcoinexaminer.org/feed/", "http://feeds.feedburner.com/CoinDesk");
+	// "http://bitcoinexaminer.org/feed/", 
+	$feed = array("http://feeds.feedburner.com/BitcoinMagazine" ,"https://www.cryptocoinsnews.com/category/news/feed/", "http://feeds.feedburner.com/CoinDesk");
 	
 	foreach ($feed as &$value) {
 		$data = fetchData($value);
@@ -20,8 +23,22 @@
 	
 	// Now sort it all by pub date ;)
 	uasort($result, 'sortByPubDate');
+
+	$returnData = convertToJson($result);
 	
-	var_dump($result);
+	if($jqueryFormat){
+		header('Content-Type:application/x-javascript');
+		$fnName = $_GET['jsoncallback'];
+		echo $fnName." (".$returnData.")";
+	}else{
+		header('Content-Type:text/json');
+		echo $returnData;
+	}	
+	
+	function convertToJson($dataToDump){
+	
+		return json_encode($dataToDump, true);
+	}
 	
 	function sortByPubDate($a, $b){
 	

@@ -266,7 +266,6 @@
 	<script src="libs/jquery.js"></script>
 	<script src="libs/knockout.js"></script>
 	<script src="libs/bootstrap.min.js"></script>
-    <script src="libs/docs.min.js"></script>
 	<script src="scripts/viewModel.js"></script>
 	<script src="scripts/loadViewModel.js"></script>
 	<script src="scripts/newsViewModel.js"></script>
@@ -279,7 +278,7 @@
 		var settingsViewModel = new SettingsViewModel();
 		var marketViewModel = new MarketViewModel();
 		var newsViewModel = new NewsViewModel();
-		newsViewModel.init();
+		var newsService = new NewsService();
 		
 		var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel);
 		var message = new MessageModel();
@@ -288,6 +287,7 @@
 		$(function() {
 		
 				// -- load
+				newsViewModel.init();
 				setInterval(function(){model.update(message);}, 400);
 				ko.applyBindings(message, document.getElementById("load"));
 		
@@ -304,6 +304,7 @@
 				ko.applyBindings(marketViewModel, document.getElementById("market"));
 				
 				// -- news
+				newsService.fetchData(newsViewModel);
 				ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
 				
 		});
