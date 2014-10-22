@@ -220,14 +220,14 @@
      style="display:inline">
     <path
        sodipodi:type="arc"
-       style="fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.10000000000000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#ff6600;fill-opacity:0.97927463;fill-rule:nonzero;stroke:#000000;stroke-width:0.10000000000000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="path6414"
        sodipodi:cx="595.5"
        sodipodi:cy="286"
        sodipodi:rx="269.5"
        sodipodi:ry="248"
        d="m 865,286 a 269.5,248 0 1 1 -539,0 269.5,248 0 1 1 539,0 z"
-       transform="matrix(0.88127873,0,0,0.97380612,-284.30147,-28.008551)" />
+       transform="matrix(0.88127873,0,0,0.97380612,-282.30147,-28.008551)" />
   </g>
   <g
      inkscape:label="Layer 1"
