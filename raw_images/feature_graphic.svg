@@ -177,7 +177,7 @@
      inkscape:cx="455.14321"
      inkscape:cy="199.64498"
      inkscape:document-units="px"
-     inkscape:current-layer="layer11"
+     inkscape:current-layer="layer13"
      showgrid="true"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -202,7 +202,8 @@
      inkscape:groupmode="layer"
      id="layer11"
      inkscape:label="Background"
-     style="opacity:0.05691056;display:inline">
+     style="opacity:0.03252031;display:inline"
+     sodipodi:insensitive="true">
     <rect
        style="fill:url(#pattern6402);fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect6349"
@@ -211,6 +212,22 @@
        x="-261.62906"
        y="-791.42487"
        transform="matrix(0.66798076,0.74417854,-0.81201674,0.58363414,0,0)" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer13"
+     inkscape:label="Circle"
+     style="display:inline">
+    <path
+       sodipodi:type="arc"
+       style="fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.10000000000000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path6414"
+       sodipodi:cx="595.5"
+       sodipodi:cy="286"
+       sodipodi:rx="269.5"
+       sodipodi:ry="248"
+       d="m 865,286 a 269.5,248 0 1 1 -539,0 269.5,248 0 1 1 539,0 z"
+       transform="matrix(0.88127873,0,0,0.97380612,-284.30147,-28.008551)" />
   </g>
   <g
      inkscape:label="Layer 1"
@@ -745,11 +762,11 @@ XH8rsmST2X8AJYH6XnPZRREAAAAASUVORK5CYII=
        id="rect4002"
        width="339"
        height="15"
-       x="291"
-       y="103" />
+       x="72"
+       y="97" />
     <path
        style="fill:#213538;fill-opacity:1;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 373,436 17,1 23,-60 95,0 25,62 16,0 -38,-98 -15,1 11,28 -93,-1 12,-28 -18,1 z"
+       d="m 154,430 17,1 23,-60 95,0 25,62 16,0 -38,-98 -15,1 11,28 -93,-1 12,-28 -18,1 z"
        id="path4004"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccccccc" />
@@ -758,8 +775,8 @@ XH8rsmST2X8AJYH6XnPZRREAAAAASUVORK5CYII=
        id="rect4009"
        width="321"
        height="225"
-       x="301"
-       y="118" />
+       x="82"
+       y="112" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -771,7 +788,7 @@ XH8rsmST2X8AJYH6XnPZRREAAAAASUVORK5CYII=
        id="rect4006"
        width="291"
        height="194"
-       x="315.5"
-       y="132" />
+       x="96.5"
+       y="125" />
   </g>
 </svg>
