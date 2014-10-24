@@ -1,6 +1,5 @@
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-gen\com\kungfuactiongrip\btcmarketmonitor\R.java \
  : F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\icon.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable\icon2.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-land-hdpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-land-ldpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\drawable-land-mdpi\screen.png \
