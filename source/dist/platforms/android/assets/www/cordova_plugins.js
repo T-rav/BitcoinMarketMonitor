@@ -36,6 +36,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/de.appplant.cordova.plugin.background-mode/www/background-mode.js",
+        "id": "de.appplant.cordova.plugin.background-mode.BackgroundMode",
+        "clobbers": [
+            "plugin.backgroundMode"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.device/www/device.js",
         "id": "org.apache.cordova.device.device",
         "clobbers": [
@@ -52,6 +59,7 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.local-notification": "0.7.4",
     "com.google.cordova.admob": "1.1.1",
     "com.msopentech.websql": "0.0.4",
+    "de.appplant.cordova.plugin.background-mode": "0.6.0-dev",
     "org.apache.cordova.device": "0.2.13-dev"
 }
 // BOTTOM OF METADATA

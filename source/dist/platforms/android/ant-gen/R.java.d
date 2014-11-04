@@ -12,7 +12,6 @@ F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\valu
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\values\version.xml \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\res\xml\config.xml \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\icon.png \
-F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable\icon2.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable-land-hdpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable-land-ldpi\screen.png \
 F:\Systems\Tinkering\BitcoinMarketMonitor\source\dist\platforms\android\ant-build\res\drawable-land-mdpi\screen.png \
