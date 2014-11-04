@@ -79,6 +79,7 @@
 			  </div>
 			  
 			<!-- News Menu --> 
+			
 			<!--
 			<div id="news">
 				<div class="navbar-header">
@@ -86,6 +87,7 @@
 				</div>
 			</div>
 			-->
+			
 			
 			<!-- Currencies Menu -->
 			<div class="navbar-header">
@@ -266,7 +268,6 @@
 	<script src="libs/jquery.js"></script>
 	<script src="libs/knockout.js"></script>
 	<script src="libs/bootstrap.min.js"></script>
-    <script src="libs/docs.min.js"></script>
 	<script src="scripts/viewModel.js"></script>
 	<script src="scripts/loadViewModel.js"></script>
 	<script src="scripts/newsViewModel.js"></script>
@@ -275,36 +276,39 @@
 	
 		var prefs = window.PrefsHelper;
 		var noop = function() {};
-		var viewService = new ViewService();
-		var settingsViewModel = new SettingsViewModel();
-		var marketViewModel = new MarketViewModel();
-		var newsViewModel = new NewsViewModel();
-		newsViewModel.init();
-		
-		var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel);
-		var message = new MessageModel();
-		var model = new UpdateProgress(10, 8);
 		
 		$(function() {
 		
-				// -- load
-				setInterval(function(){model.update(message);}, 400);
-				ko.applyBindings(message, document.getElementById("load"));
-		
-				// settings
-				ko.applyBindings(settingsViewModel, document.getElementById("defaults"));
-		
-				// -- main
-				viewModel.currency("USD"); // Text appears
-				ko.applyBindings(viewModel, document.getElementById("main"));
-				viewService.init(viewModel, settingsViewModel);
-				viewModel.init();
-				
-				// -- market 
-				ko.applyBindings(marketViewModel, document.getElementById("market"));
-				
-				// -- news
-				ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
+			var viewService = new ViewService();
+			var settingsViewModel = new SettingsViewModel();
+			var marketViewModel = new MarketViewModel();
+			var newsViewModel = new NewsViewModel();
+			var newsService = new NewsService();
+			
+			var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel, newsService);
+			var message = new MessageModel();
+			var model = new UpdateProgress(10, 8);
+	
+			// -- load
+			newsViewModel.init(newsService);
+			setInterval(function(){model.update(message);}, 400);
+			ko.applyBindings(message, document.getElementById("load"));
+	
+			// settings
+			ko.applyBindings(settingsViewModel, document.getElementById("defaults"));
+	
+			// -- main
+			viewModel.currency("USD"); // Text appears
+			ko.applyBindings(viewModel, document.getElementById("main"));
+			viewService.init(viewModel, settingsViewModel);
+			viewModel.init();
+			
+			// -- market 
+			ko.applyBindings(marketViewModel, document.getElementById("market"));
+			
+			// -- news
+			//newsService.fetchData(newsViewModel);
+			ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
 				
 		});
 		
