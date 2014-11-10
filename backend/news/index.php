@@ -25,7 +25,7 @@
 	}
 	
 	// Now sort it all by pub date ;)
-	uasort(&$result, 'sortByPubDate');
+	usort(&$result, 'sortByPubDate');
 
 	$returnData = convertToJson($result);
 	
