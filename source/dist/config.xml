@@ -1,8 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.kungfuactiongrip.btcmarketmonitor" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<!-- 1.0.4 - Last relase without news -->
+<!-- 1.1.0 - First release with news -->
+<widget id="com.kungfuactiongrip.btcmarketmonitor" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Crypto Stats</name>
     <description>
-        An application to monitor BTC prices around the world.
+        An application to monitor BTC exchanges around the world.
+        And provide various crypto currency news feeds - giving up to the minutue analysis.
     </description>
     <author email="tmfrisinger@gmail.com" href="http://www.stoneagetechnlogies.com/cryptostats">
         Travis Frisinger
