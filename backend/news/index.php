@@ -115,7 +115,7 @@
 
 	function buildDescription($content){
 	
-		$description = substr($content, 0, 350);
+		$description = substr($content, 0, 130);
 		$lastSpace = strrpos($description, " ");
 		$result = substr($description, 0, $lastSpace);
 		
