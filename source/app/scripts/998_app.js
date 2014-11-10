@@ -1,27 +1,19 @@
 'use strict';
 (function() {
-    // WebHelper plugin shim import
-    // uncomment to open links in native browser
-    // var webHelper = window.WebHelper;
+    
     // example usage:
     // webHelper.openUrl("http://www.google.com")
 
-    // User Preferences plugin shim import
-    // uncomment to use preferences
-    
-    // example prefs usage:
-    // prefs.store(noop, noop, "key", "value");
-    // prefs.fetch(function (storedValue) {
-    // }, function (retrieveError) {
-    // }, "key");
     var app = {
         init: function() {
 
             // swap to false to show splash screen
-            var isDevEnv = true;
+            var isDevEnv = false;
+            var loadScreenTTL = 4500;
+            var loadScreenInterval = 500;
 
             this.fixBottomMenuItemsForSmallerScreens();
-            this.show(isDevEnv);
+            this.slashScreen(isDevEnv,loadScreenTTL, loadScreenInterval);
 		    this.bootstrap();	
             // register routing engine ;)
 			var self = this;
@@ -68,13 +60,13 @@
             // -- news
             ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
         },
-        show: function(isDevEnv) {
+        slashScreen: function(isDevEnv, loadScreenTTL, loadScreenInterval) {
             // define splash and content -id elements for this functionality
             if(isDevEnv){
 			    $('#main').show();
             }else{
                 $('#load').collapse('show');
-                setTimeout(function(){$('#load').collapse('hide'); setTimeout(function(){$('#main').show();},500);},4500);    
+                setTimeout(function(){$('#load').collapse('hide'); setTimeout(function(){$('#main').show();},loadScreenInterval);},loadScreenTTL);    
             }
         },
         fixBottomMenuItemsForSmallerScreens: function() {
