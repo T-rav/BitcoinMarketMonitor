@@ -67,7 +67,7 @@
 			$title = (string)$item->title;
 			$link = (string)$item->link;
 			$guid = (string)$item->guid;
-			$pupDate = (string)$item->pubDate;
+			$pupDate = (string)str_replace(" +0000", " GMT",$item->pubDate);
 			$description = pruneDescription((string)$item->description);
 
 			if(strlen($title) <= 80){

@@ -6,7 +6,7 @@
 		// TODO : Add source attribute ;)
 		self.addHeadline = function(story){
 			try{
-				self.headline().push({title : story.title, summary: story.description, link : story.guid, pupDate : story.pupDate});	
+				self.headline().push({title : story.title, summary: story.description, link : story.guid, pubDate : story.pupDate});	
 			}catch(e){
 				console.log(e);
 			}
