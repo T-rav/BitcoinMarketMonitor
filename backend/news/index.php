@@ -70,7 +70,10 @@
 			$title = (string)$item->title;
 			$link = (string)$item->link;
 			$guid = (string)$item->guid;
+			
 			$pubDate = (string)str_replace(" +0000", " GMT",$item->pubDate);
+			$pubDate = pruneOutDate($pubDate);
+
 			$description = pruneDescription((string)$item->description);
 			$description = buildDescription($description);
 
@@ -86,6 +89,17 @@
 		}
 		
 		return $result;
+	}
+
+	function pruneOutDate($dateOf){
+
+		$start = strpos($dateOf, ",");
+		if($start > 0){
+			$start = $start + 1;
+			return trim(substr($dateOf, $start));
+		}
+
+		return trim($dateOf);
 	}
 	
 	function pruneDescription($description){
