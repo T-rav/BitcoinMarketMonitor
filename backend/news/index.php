@@ -2,6 +2,9 @@
 	ini_set('display_errors', true);
 	error_reporting(E_ALL);
 
+	// set timezone ;)
+	date_default_timezone_set("GMT");
+
 	$jqueryFormat = isset($_GET['jsoncallback']);
 
 	// TODO : Fetch and persist to DB, every 4 hours pull via cron
@@ -18,11 +21,11 @@
 	
 	foreach ($feed as &$value) {
 		$data = fetchData($value);
-		processRSS($data, &$result);
+		$result = processRSS($data, $result);
 	}
 	
 	// Now sort it all by pub date ;)
-	uasort($result, 'sortByPubDate');
+	uasort(&$result, 'sortByPubDate');
 
 	$returnData = convertToJson($result);
 	
@@ -42,11 +45,11 @@
 	
 	function sortByPubDate($a, $b){
 	
-		if($a["pupDate"] == $b["pupDate"]){
+		if($a["sortDate"] == $b["sortDate"]){
 			return 0;
 		}
 	
-		return ($a["pupDate"] < $b["pupDate"]) ? 1 : -1;
+		return ($a["sortDate"] < $b["sortDate"]) ? 1 : -1;
 	}
 	
 	function fetchData($url){
@@ -67,14 +70,16 @@
 			$title = (string)$item->title;
 			$link = (string)$item->link;
 			$guid = (string)$item->guid;
-			$pupDate = (string)str_replace(" +0000", " GMT",$item->pubDate);
+			$pubDate = (string)str_replace(" +0000", " GMT",$item->pubDate);
 			$description = pruneDescription((string)$item->description);
+			$description = buildDescription($description);
 
-			if(strlen($title) <= 80){
+			if(strlen($title) <= 90){
 				$story = array();
 				$story["title"] = $title;
 				$story["guid"] = $link;
-				$story["pupDate"] = $pupDate;
+				$story["pupDate"] = $pubDate;
+				$story["sortDate"] = strtotime($item->pubDate);
 				$story["description"] = $description;
 				$result[] = $story;
 			}	
@@ -85,16 +90,18 @@
 	
 	function pruneDescription($description){
 		$result = str_replace("[&#8230;]", "", $description);
-		$result = pruneSection($result, "<p>The post <a rel=\"nofollow" , "</p>");
+		//$result = pruneSection($result, "<p>The post <a rel=\"nofollow" , "</p>");
 		$result = str_replace("<p>","", $result);
 		$result = str_replace("</p>","", $result);
+
+		$result = $description;
 		
 		return trim($result);
 	}
 
 	function buildDescription($content){
 	
-		$description = substr($content, 0, 200);
+		$description = substr($content, 0, 450);
 		$lastSpace = strrpos($description, " ");
 		$result = substr($description, 0, $lastSpace);
 		
@@ -105,7 +112,31 @@
 		$result = str_replace("<b/>","", $result);
 		$result = str_replace("<i>","", $result);
 		$result = str_replace("<i/>","", $result);
-		
+
+		// " replace
+		$result = str_replace("&#8220;", "\"", $result);
+		$result = str_replace("&#8221;", "\"", $result);
+		$result = str_replace("\\u00a0", "\"", $result);
+		$result = str_replace("\\u201c", "\"", $result);
+
+		// - replace
+		$result = str_replace("&#8211;", "-", $result);
+		$result = str_replace("\u2013", "-", $result);
+
+		// ' replace
+		$result = str_replace("&#8217;", "'", $result);
+		$result = str_replace("\\u2019", "'", $result);
+
+		// [space] replace
+		$result = str_replace("&#160;", " ", $result);
+		$result = str_replace("\\u00a0", " ", $result);
+
+		// ... replace &#8230;
+		$result = str_replace("&#8230;", " ", $result);		
+
+		// u replace
+		$result = str_replace("\u00fc", "u", $result);
+
 		return trim($result);
 	}
 	

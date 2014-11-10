@@ -14,11 +14,11 @@ function ViewModel(viewService, settingsViewModel, marketViewModel, newsViewMode
 	self.currency = ko.observable(""); // Initially blank
 	self.lastSync = ko.observable("In Progress...");
 	self.headers = [
-						{title:'Symbol',sortKey:'symbol'},
-						{title:'Latest',sortKey:'latest'},
-						{title:'Time',sortKey:'bid'},
-						{title:'Average',sortKey:'avg'},
-						{title:'Volume',sortKey:'vol'}
+						{title:"Symbol",sortKey:"symbol"},
+						{title:"Latest",sortKey:"latest"},
+						{title:"Time",sortKey:"bid"},
+						{title:"Average",sortKey:"avg"},
+						{title:"Volume",sortKey:"vol"}
 				   ];				
 	self.exchangeState = ko.observableArray([]);
 

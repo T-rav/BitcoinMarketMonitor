@@ -66,7 +66,7 @@ function SettingsViewModel(){
 		while(self.editHistory().length > 0){
 			var item = self.editHistory().pop();
 			var currentIndex = self.findEditItemIndex(item.name);
-			if(currentIndex != -1){
+			if(currentIndex !== -1){
 				var selected = item.selected;
 				self.fiatCurrency()[currentIndex].selected(selected);
 			}
