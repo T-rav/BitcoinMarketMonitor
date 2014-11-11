@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <link rel="icon" sizes="192x192" href="images/touch/192x192.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -66,29 +66,25 @@
 		<!-- Settings Menu -->
 		<div class="navdrawer-container promote-layer navbar navbar-inverse">
 			  <div class="navbar-header">
-				<h4 class="navbar-brand" data-toggle="collapse" data-target="#settingsMenu"><b>Settings</b>&nbsp;<span class="badge">2</span></h4>
+				<h4 class="navbar-brand" data-toggle="collapse" data-target="#settingsMenu"><b>Settings</b>&nbsp;<span class="badge">1</span></h4>
 			  </div>
 			  <div id="settingsMenu" class="navbar-collapse collapse">
 				<form>
 					<ul class="nav navbar-nav">
 					  <li class="smallListMenuItem"><a href='#/settings/defaults' data-toggle="collapse" data-target="#defaults">Defaults</a></li>
-					  <!--<li class="smallListMenuItem"><a href='#/settings/news' data-toggle="collapse" data-target="#newsRegion">News</a></li>-->
+					  <!--<li class="smallListMenuItem"><a href='#/settings/news' data-toggle="collapse" data-target="#newsSettings">News</a></li>-->
 					  <!--<li class="smallListMenuItem"><a href='#/settings/notifications' data-toggle="collapse" data-target="#notification">Notifications</a></li>-->
 					</ul>
 				</form>
 			  </div>
 			  
 			<!-- News Menu --> 
-			
-			<!--
 			<div id="news">
 				<div class="navbar-header">
 					<h4 id="newsId" class="navbar-brand"><b data-toggle="collapse" data-target="#newsRegion">News</b>&nbsp;<span class="badge" data-bind="text: headline().length"></span></h4>
 				</div>
 			</div>
-			-->
-			
-			
+
 			<!-- Currencies Menu -->
 			<div class="navbar-header">
 				<h4 class="navbar-brand" data-toggle="collapse" data-target="#currencyMenu"><b>Currencies</b> <span class="badge" data-bind="text: fiatCurrency().length"></span></h4>
@@ -134,11 +130,11 @@
 		</main>
 
 		<!-- Message Banners -->
-		<div  id="error" class="alert alert-dismissable alert-danger footer">
+		<div id="error" class="alert alert-dismissable alert-danger footer">
 		  <strong>Oh snap!</strong> <span>An error occurred syncing.</span><br/><span> Please ensure your wifi or mobile data is on.</span>
 		</div>
-		<div  id="info" class="alert alert-dismissable alert-info footer collapse">
-		  <strong>Hello.</strong> <span>This application monitors Bitcoin exchanges around the world trading in a variety of currencies and displays key trade info about each.</span>
+		<div id="info" class="alert alert-dismissable alert-info footer collapse">
+		  <strong>Hello.</strong> <span>This application monitors Bitcoin exchanges around the world trading in a variety of currencies and displays key trade info about each. <b>And</b> aggregates various crypto currency news feeds - providing up to the minutue analysis.</span>
 		</div>
 	</div>
 	
@@ -225,6 +221,7 @@
 		</form>
     </div>
 	
+	<!-- News Region -->
 	<div id="newsRegion" class="settings-container collapse">
 		<header class="app-bar promote-layer" style="margin-left:2px;">
 			<h4>
@@ -235,6 +232,8 @@
 		<div class="list-group newsWrapper" data-bind="foreach:headline">
 			<a href="#" class="list-group-item" data-bind="attr: { href: link } , css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:10px;">
 				<b class="list-group-item-heading" data-bind="text: title"></b>
+				<br/>
+				<u class="list-group-item-heading" data-bind="text: pubDate"></u>
 				<br/>
 				<span style="font-size:12px;" data-bind="text: summary"></span>
 			</a>
@@ -259,58 +258,35 @@
 		</form>
     </div>
 	-->
-	
-	<script src="scripts/001_WebHelper.js"></script>
-	<script src="scripts/002_PrefsHelper.js"></script>
-	<script src="scripts/998_app.js"></script>
-	<script src="scripts/999_main.js"></script>
+		
+	<!-- Service Imports -->
+	<script src="scripts/viewService.js"></script>
+	<script src="scripts/newsService.js"></script>
+
+	<!-- View Model Imports -->
+	<script src="scripts/settingsViewModel.js"></script>
+	<script src="scripts/marketViewModel.js"></script>
+	<script src="scripts/loadViewModel.js"></script>
+	<script src="scripts/newsViewModel.js"></script>
+	<script src="scripts/viewModel.js"></script>
+
+	<!-- Deps Imports -->
 	<script src="cordova.js"></script>
 	<script src="libs/jquery.js"></script>
 	<script src="libs/knockout.js"></script>
 	<script src="libs/bootstrap.min.js"></script>
-	<script src="scripts/viewModel.js"></script>
-	<script src="scripts/loadViewModel.js"></script>
-	<script src="scripts/newsViewModel.js"></script>
+
+	<!-- Seed Import -->
+	<!--<script src="scripts/001_WebHelper.js"></script>-->
+	<script src="scripts/002_PrefsHelper.js"></script>
+	<script src="scripts/998_app.js"></script>
+	<script src="scripts/999_main.js"></script>
 	
 	<script type="text/javascript">
 	
 		var prefs = window.PrefsHelper;
 		var noop = function() {};
-		
-		$(function() {
-		
-			var viewService = new ViewService();
-			var settingsViewModel = new SettingsViewModel();
-			var marketViewModel = new MarketViewModel();
-			var newsViewModel = new NewsViewModel();
-			var newsService = new NewsService();
-			
-			var viewModel = new ViewModel(viewService, settingsViewModel, marketViewModel, newsViewModel, newsService);
-			var message = new MessageModel();
-			var model = new UpdateProgress(10, 8);
-	
-			// -- load
-			newsViewModel.init(newsService);
-			setInterval(function(){model.update(message);}, 400);
-			ko.applyBindings(message, document.getElementById("load"));
-	
-			// settings
-			ko.applyBindings(settingsViewModel, document.getElementById("defaults"));
-	
-			// -- main
-			viewModel.currency("USD"); // Text appears
-			ko.applyBindings(viewModel, document.getElementById("main"));
-			viewService.init(viewModel, settingsViewModel);
-			viewModel.init();
-			
-			// -- market 
-			ko.applyBindings(marketViewModel, document.getElementById("market"));
-			
-			// -- news
-			//newsService.fetchData(newsViewModel);
-			ko.applyBindings(newsViewModel, document.getElementById("newsRegion"));
-				
-		});
+		//var webHelper = window.WebHelper;
 		
 	</script>
     <!-- endbuild -->
