@@ -36,11 +36,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.msopentech.indexedDB/www/IndexedDBShim.min.js",
-        "id": "com.msopentech.indexedDB.IndexedDBShim",
-        "runs": true
-    },
-    {
         "file": "plugins/org.apache.cordova.device/www/device.js",
         "id": "org.apache.cordova.device.device",
         "clobbers": [
@@ -56,8 +51,6 @@ module.exports.metadata =
     "org.apache.cordova.splashscreen": "0.3.3",
     "de.appplant.cordova.plugin.local-notification": "0.7.4",
     "com.google.cordova.admob": "1.1.1",
-    "com.msopentech.websql": "0.0.4",
-    "com.msopentech.indexedDB": "0.1.1",
     "org.apache.cordova.device": "0.2.13-dev"
 }
 // BOTTOM OF METADATA

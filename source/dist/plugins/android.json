@@ -106,12 +106,6 @@
         },
         "com.google.cordova.admob": {
             "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
-        },
-        "com.msopentech.websql": {
-            "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
-        },
-        "com.msopentech.indexedDB": {
-            "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
         }
     },
     "dependent_plugins": {
