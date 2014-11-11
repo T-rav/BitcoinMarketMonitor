@@ -37,8 +37,10 @@
 	
 		self.social = function(platform, data, event){
 			alert("social " + platform + " ->"+data.link);
-			window.plugins.socialsharing.share(null, null, null, data.link)
 			self.socialTrigger = true;
+			// networks : gplus, linkedin, twitter
+			//window.plugins.socialsharing.share(null, null, null, data.link)
+			
 
 		}
 	}
