@@ -30,7 +30,6 @@
     <!--<link rel="stylesheet" href="styles/main.css">-->
 	<link href="styles/bootstrap.min.css" rel="stylesheet">
 	<link href="styles/font-awesome.min.css" rel="stylesheet">
-	<link href="styles/bootstrap-social.css" rel="stylesheet">
 	
   </head>
   <body>
@@ -233,7 +232,7 @@
 		</header>
 		<div class="list-group newsWrapper" data-bind="foreach:headline">
 			<!-- attr: { href: link }  -->
-			<a href="#" class="list-group-item" data-bind="click: $parent.openLink, css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:10px;">
+			<a href="#" class="list-group-item" data-bind="click: $parent.openLink, css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:1px;">
 				<b class="list-group-item-heading" data-bind="text: title"></b>
 				<br/>
 				<u class="list-group-item-heading" data-bind="text: pubDate"></u>
@@ -241,9 +240,10 @@
 				<span style="font-size:12px;" data-bind="text: summary"></span>
 				<br/>
 				<br/>
-				<i class="fa fa-2x socialRight fa-google-plus-square"></i> &nbsp;
-				<i class="fa fa-2x socialRight fa-linkedin-square"></i> &nbsp;
-				<i class="fa fa-2x socialRight fa-twitter-square"></i> 
+				<!-- https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin -->
+				<i class="fa fa-2x fa-google-plus-square"></i> &nbsp;
+				<i class="fa fa-2x fa-linkedin-square"></i> &nbsp;
+				<i class="fa fa-2x fa-twitter-square"></i> 
 			</a>
 		</div>
     </div>
