@@ -1,7 +1,9 @@
 	function NewsViewModel(){
 		var self = this;
 		self.data = [];
+		self.socialTrigger=false;
 		self.headline = ko.observableArray([]);
+
 
 		// TODO : Add source attribute ;)
 		self.addHeadline = function(story){
@@ -23,7 +25,20 @@
 		};
 		
 		self.openLink = function(item){
-			webHelper.openUrl(item.link);
+
+			// <button onclick="window.plugins.socialsharing.share(null, null, null, 'http://www.x-services.nl')">link only</button>
+			if(!self.socialTrigger){
+				webHelper.openUrl(item.link);	
+			}else{
+				self.socialTrigger = false;
+			}
+			
 		};
 	
+		self.social = function(platform, data, event){
+			alert("social " + platform + " ->"+data.link);
+			window.plugins.socialsharing.share(null, null, null, data.link)
+			self.socialTrigger = true;
+
+		}
 	}

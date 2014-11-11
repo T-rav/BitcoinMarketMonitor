@@ -241,7 +241,7 @@
 				<br/>
 				<br/>
 				<!-- https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin -->
-				<i class="fa fa-2x fa-google-plus-square"></i> &nbsp;
+				<i class="fa fa-2x fa-google-plus-square" data-bind="click: function(data, event) { $parent.social('gplug', data, event); }"></i> &nbsp;
 				<i class="fa fa-2x fa-linkedin-square"></i> &nbsp;
 				<i class="fa fa-2x fa-twitter-square"></i> 
 			</a>
@@ -285,6 +285,7 @@
 	<script src="libs/bootstrap.min.js"></script>
 
 	<!-- Seed Import -->
+	<script src="scripts/socialSharing.js"></script>
 	<script src="scripts/001_WebHelper.js"></script>
 	<script src="scripts/002_PrefsHelper.js"></script>
 	<script src="scripts/998_app.js"></script>
