@@ -9,7 +9,7 @@
 
             // swap to false to show splash screen
             var isDevEnv = false;
-            var loadScreenTTL = 5500;
+            var loadScreenTTL = 4500;
             var loadScreenInterval = 500;
 
             this.fixBottomMenuItemsForSmallerScreens();

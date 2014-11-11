@@ -8,7 +8,7 @@
                         url: url
                 },
                 function() {},
-                function() { alert("Failed to open URL via Android intent"); }
+                function() { alert("Failed to open URL"); }
                 );
             } else {
                 w.open(url, "_blank");

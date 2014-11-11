@@ -21,5 +21,9 @@
 		
 			return true;
 		};
+		
+		self.openLink = function(item){
+			webHelper.openUrl(item.link);
+		};
 	
 	}

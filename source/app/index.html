@@ -230,7 +230,8 @@
 			<hr/>
 		</header>
 		<div class="list-group newsWrapper" data-bind="foreach:headline">
-			<a href="#" class="list-group-item" data-bind="attr: { href: link } , css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:10px;">
+			<!-- attr: { href: link }  -->
+			<a href="#" class="list-group-item" data-bind="click: $parent.openLink, css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:10px;">
 				<b class="list-group-item-heading" data-bind="text: title"></b>
 				<br/>
 				<u class="list-group-item-heading" data-bind="text: pubDate"></u>
@@ -277,7 +278,7 @@
 	<script src="libs/bootstrap.min.js"></script>
 
 	<!-- Seed Import -->
-	<!--<script src="scripts/001_WebHelper.js"></script>-->
+	<script src="scripts/001_WebHelper.js"></script>
 	<script src="scripts/002_PrefsHelper.js"></script>
 	<script src="scripts/998_app.js"></script>
 	<script src="scripts/999_main.js"></script>
@@ -286,7 +287,7 @@
 	
 		var prefs = window.PrefsHelper;
 		var noop = function() {};
-		//var webHelper = window.WebHelper;
+		var webHelper = window.WebHelper;
 		
 	</script>
     <!-- endbuild -->
