@@ -110,9 +110,6 @@
         "com.msopentech.websql": {
             "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
         },
-        "de.appplant.cordova.plugin.background-mode": {
-            "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
-        },
         "com.msopentech.indexedDB": {
             "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
         }
