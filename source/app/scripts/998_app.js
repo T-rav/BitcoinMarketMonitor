@@ -18,6 +18,7 @@
             // register routing engine ;)
 			var self = this;
 			document.addEventListener('click', function(){self.routingEngine(event);}, false);
+            self.handleBackButton();
         },
         bootstrap : function(){
 
@@ -81,6 +82,18 @@
             if (bottomListTop <= lastItemBottom) {
                 bottomList.css("position", "relative");
             }
+        },
+        handleBackButton : function(){
+            document.addEventListener("backbutton", function(e){
+               if($.mobile.activePage.is('#market')){
+                   // exit if home page
+                   e.preventDefault();
+                   navigator.app.exitApp();
+               }
+               else {
+                   navigator.app.backHistory()
+               }
+            }, false);
         },
 		routingEngine:function(event){
 			// now we just need to handle routes and inject html fragments; )

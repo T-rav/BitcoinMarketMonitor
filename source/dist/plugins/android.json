@@ -17,10 +17,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
                         },
@@ -30,14 +26,6 @@
                         },
                         {
                             "xml": "<feature name=\"AdMob\"><param name=\"android-package\" value=\"com.google.cordova.admob.AdMob\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"BackgroundMode\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.background.BackgroundMode\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<preference name=\"KeepRunning\" value=\"true\" />",
                             "count": 1
                         },
                         {
@@ -68,10 +56,6 @@
                         },
                         {
                             "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" android:name=\"com.google.android.gms.ads.AdActivity\" android:theme=\"@android:style/Theme.Translucent\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<service android:enabled=\"true\" android:name=\"de.appplant.cordova.plugin.background.ForegroundService\" />",
                             "count": 1
                         }
                     ],
@@ -104,9 +88,6 @@
             "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
         },
         "me.apla.cordova.app-preferences": {
-            "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
-        },
-        "org.apache.cordova.splashscreen": {
             "PACKAGE_NAME": "com.kungfuactiongrip.btcmarketmonitor"
         },
         "de.appplant.cordova.plugin.local-notification": {

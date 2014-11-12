@@ -39,7 +39,7 @@
 			alert("social " + platform + " ->"+data.link);
 			self.socialTrigger = true;
 			// networks : gplus, linkedin, twitter
-			//window.plugins.socialsharing.share(null, null, null, data.link)
+			window.plugins.socialsharing.share(null, null, null, data.link)
 			
 
 		}
