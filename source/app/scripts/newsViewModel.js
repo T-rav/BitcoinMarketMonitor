@@ -26,9 +26,9 @@
 		
 		self.openLink = function(item){
 
-			// <button onclick="window.plugins.socialsharing.share(null, null, null, 'http://www.x-services.nl')">link only</button>
 			if(!self.socialTrigger){
-				webHelper.openUrl(item.link);	
+				self.openInAppLink(item.link);
+				//webHelper.openUrl(item.link);	
 			}else{
 				self.socialTrigger = false;
 			}
@@ -36,11 +36,34 @@
 		};
 	
 		self.social = function(platform, data, event){
-			alert("social " + platform + " ->"+data.link);
-			self.socialTrigger = true;
-			// networks : gplus, linkedin, twitter
-			window.plugins.socialsharing.share(null, null, null, data.link)
+			//alert("social " + platform + " ->"+data.link);
+			self.socialTrigger = true;	
 			
+			if(platform === 'gplus'){
+				var gplusbase = "https://plus.google.com/share?url=";
+				var shareLink = gplusbase+data.link;
+				self.openInAppLink(shareLink);
+			}else if(platform === "linkedin"){
+				var linkedinbase = "https://www.linkedin.com/cws/share?url=";
+				var shareLink = linkedinbase + data.link;
+				self.openInAppLink(shareLink);
+			}else if(platform === "twitter"){
+				var base = "https://twitter.com/intent/tweet?url=";
+				var shareLink = base + data.link;
+				self.openInAppLink(shareLink);
+			}else if(platform === "facebook"){
+				var base = "http://www.facebook.com/sharer/sharer.php?url=";
+				var shareLink = base + data.link;
+				self.openInAppLink(shareLink);	
+			}
+		};
 
-		}
+		self.openInAppLink = function(link){
+			window.plugins.webintent.startActivity({
+			    action: window.plugins.webintent.ACTION_VIEW,
+			    url: link},
+			    function() {},
+			    function() {alert("Failed to open URL [ " + link + " ]")}
+			);	
+		};
 	}

@@ -29,13 +29,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js",
-        "id": "nl.x-services.plugins.socialsharing.SocialSharing",
-        "clobbers": [
-            "window.plugins.socialsharing"
-        ]
-    },
-    {
         "file": "plugins/org.apache.cordova.device/www/device.js",
         "id": "org.apache.cordova.device.device",
         "clobbers": [
@@ -50,7 +43,6 @@ module.exports.metadata =
     "me.apla.cordova.app-preferences": "0.4.2",
     "de.appplant.cordova.plugin.local-notification": "0.7.6",
     "com.google.cordova.admob": "2.3.2",
-    "nl.x-services.plugins.socialsharing": "4.3.10",
     "org.apache.cordova.device": "0.2.12"
 }
 // BOTTOM OF METADATA

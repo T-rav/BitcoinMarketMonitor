@@ -240,10 +240,12 @@
 				<br/>
 				<br/>
 				<!-- https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin -->
+				<!-- Place this tag in your head or just before your close body tag. -->
+
 				<i class="fa fa-2x fa-google-plus-square" data-bind="click: function(data, event) { $parent.social('gplus', data, event); }"></i> &nbsp;
 				<i class="fa fa-2x fa-linkedin-square" data-bind="click: function(data, event) { $parent.social('linkedin', data, event); }"></i> &nbsp;
-				<i class="fa fa-2x fa-twitter-square" data-bind="click: function(data, event) { $parent.social('twitter', data, event); }"></i> &nbsp;
-				<i class="fa fa-2x fa-facebook-square" data-bind="click: function(data, event) { $parent.social('facebook', data, event); }"></i> 
+				<!--<i class="fa fa-2x fa-twitter-square" data-bind="click: function(data, event) { $parent.social('twitter', data, event); }"></i> &nbsp;
+				<i class="fa fa-2x fa-facebook-square" data-bind="click: function(data, event) { $parent.social('facebook', data, event); }"></i> -->
 			</a>
 		</div>
     </div>
@@ -290,7 +292,9 @@
 	<script src="scripts/002_PrefsHelper.js"></script>
 	<script src="scripts/998_app.js"></script>
 	<script src="scripts/999_main.js"></script>
-	
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
 	<script type="text/javascript">
 	
 		var prefs = window.PrefsHelper;
