@@ -52,18 +52,21 @@
 				var shareLink = base + data.link;
 				self.openInAppLink(shareLink);
 			}else if(platform === "facebook"){
-				var base = "http://www.facebook.com/sharer/sharer.php?url=";
+				var base = "http://www.facebook.com/sharer/sharer.php?u=";
 				var shareLink = base + data.link;
 				self.openInAppLink(shareLink);	
 			}
 		};
 
 		self.openInAppLink = function(link){
+			webHelper.openUrl(link)
+			/*
 			window.plugins.webintent.startActivity({
 			    action: window.plugins.webintent.ACTION_VIEW,
 			    url: link},
 			    function() {},
 			    function() {alert("Failed to open URL [ " + link + " ]")}
-			);	
+			);
+			*/
 		};
 	}
