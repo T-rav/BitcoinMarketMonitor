@@ -169,11 +169,20 @@ function ViewModel(viewService, settingsViewModel, marketViewModel, newsViewMode
 
 	self.imgSrc = function(index){
 
-		if(index % 2 == 0){
+		if(index % 2 === 0){
 			return "images/small_bar_chart-even.svg";
 		}else{
 			return "images/small_bar_chart-odd.svg";
 		}
 
+	};
+
+	self.isFakeHeader = function(index){
+
+		if(index === 0){
+			return "fakeHeader";
+		}else{
+			return "";
+		}
 	};
 };
