@@ -176,13 +176,4 @@ function ViewModel(viewService, settingsViewModel, marketViewModel, newsViewMode
 		}
 
 	};
-
-	self.isFakeHeader = function(index){
-
-		if(index === 0){
-			return "fakeHeader";
-		}else{
-			return "";
-		}
-	};
-};
+}

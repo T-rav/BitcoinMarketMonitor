@@ -27,6 +27,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 .marketLeft{float:left;width:48%;}
 .marketRight{float:left;width:48%;}
 .socialRight {float: right; margin-right:3px;}
-.marketUp{color: #62c462 ;}
-.marketFlat{color:#74cae3;}
-.marketDown{color:#ec4d49;}
+.marketUp{color: #62c462; margin-left:-4px;}
+.marketFlat{color:#74cae3; margin-left:-4px;}
+.marketDown{color:#ec4d49; margin-left:-4px;}
+.marketSymbleContainer{width:112%;margin-right:-20px;}

@@ -118,14 +118,16 @@
 					<tbody data-bind="foreach:exchangeState">
 						<tr>
 							<td class="tableCell" data-bind="click: $parent.marketView"> 
-								<i data-bind="css: $parent.marketDirectionCSS($data)"></i>
-								<span data-bind="text: symbol"></span>
-								<!--<img data-bind="attr: { src: $parent.imgSrc($index()) }" width="15" height="15" />-->
+								<div class="marketSymbleContainer">
+									<i data-bind="css: $parent.marketDirectionCSS($data)"></i>
+									<span data-bind="text: symbol"></span>
+									<img data-bind="attr: { src: $parent.imgSrc($index()) }" />
+								</div>
 							</td> 
-							<td class="tableCell" data-bind="text: close"> </td>
-							<td class="tableCell" data-bind="text: lastTradeMinutes"> </td>
-							<td class="tableCell" data-bind="text: avg"> </td>
-							<td class="tableCell" data-bind="text: volume"> </td>
+							<td class="tableCell" data-bind="text: close"></td>
+							<td class="tableCell" data-bind="text: lastTradeMinutes"></td> <!-- data-bind="text: lastTradeMinutes" -->
+							<td class="tableCell" data-bind="text: avg"></td>
+							<td class="tableCell" data-bind="text: volume"></td>
 						</tr>
 					</tbody>
 				</table>
