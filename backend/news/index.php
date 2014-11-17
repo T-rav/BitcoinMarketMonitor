@@ -17,6 +17,7 @@
 	
 	$result = array();
 	// "http://bitcoinexaminer.org/feed/", 
+	// http://cointelegraph.com/rss
 	$feed = array("http://feeds.feedburner.com/BitcoinMagazine" ,"https://www.cryptocoinsnews.com/category/news/feed/", "http://feeds.feedburner.com/CoinDesk");
 	
 	foreach ($feed as &$value) {
