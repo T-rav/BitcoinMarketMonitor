@@ -109,6 +109,18 @@
 				if($value["avg"] == null){
 					$value["avg"] = 0;
 				}
+
+				// set data direction ;)
+				$directionDiff = $value["close"] - $value["avg"];
+
+				if($directionDiff < 0){
+					$value["direction"] = "up";	
+				}else if($directionDiff > 0){
+					$value["direction"] = "down";
+				}else{
+					$value["direction"] = "flat";
+				}
+
 				if($value["avg"] > 0){
 					$value["avg"] = round($value["avg"], 2);
 					$value["volume"] = round($value["volume"], 1);
@@ -119,6 +131,7 @@
 					$value["lastTradeMinutes"] = round($lastTradeMinutes,2);
 					$result[$key][] = $value;
 				}
+
 			}
 		}
 		

@@ -153,4 +153,27 @@ function ViewModel(viewService, settingsViewModel, marketViewModel, newsViewMode
 		$("#market").toggle();	
 		self.marketViewModel.setViewData(item);
 	};
+
+	self.marketDirectionCSS = function(item){
+		
+		if(item.direction == "up"){
+			return "fa fa-caret-up marketUp";
+		}else if(item.direction == "flat"){
+			return "fa fa-caret-right marketFlat";
+		}else{
+			return "fa fa-caret-down marketDown";
+		}
+
+		return false;
+	};
+
+	self.imgSrc = function(index){
+
+		if(index % 2 == 0){
+			return "images/small_bar_chart.svg";
+		}else{
+			return "images/small_bar_chart-2.svg";
+		}
+
+	};
 };

@@ -11,7 +11,7 @@
 		self.incAmount = incAmount;
 		self.incCount = 0;
 		self.messageCount = 0;
-		self.messages = ['Loading preferences.','Binding UI.','Eureka!'];
+		self.messages = ['Fetching News.','Loading preferences.','Eureka!'];
 		
 		self.update = function(messageModel){
 			self.progress = self.progress + self.incAmount;

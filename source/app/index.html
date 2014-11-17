@@ -117,7 +117,11 @@
 				<table class="table table-striped tableContainer">
 					<tbody data-bind="foreach:exchangeState">
 						<tr>
-							<td class="tableCell" data-bind="text: symbol, click: $parent.marketView"> </td>
+							<td class="tableCell" data-bind="click: $parent.marketView"> 
+								<i data-bind="css: $parent.marketDirectionCSS($data)"></i>
+								<span data-bind="text: symbol"></span>
+								<img data-bind="attr: { src: $parent.imgSrc($index()) }" width="15" height="15" />
+							</td>
 							<td class="tableCell" data-bind="text: close"> </td>
 							<td class="tableCell" data-bind="text: lastTradeMinutes"> </td>
 							<td class="tableCell" data-bind="text: avg"> </td>
@@ -298,7 +302,6 @@
 		var prefs = window.PrefsHelper;
 		var noop = function() {};
 		var webHelper = window.WebHelper;
-		
 	</script>
     <!-- endbuild -->
   </body>
