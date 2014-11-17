@@ -170,9 +170,9 @@ function ViewModel(viewService, settingsViewModel, marketViewModel, newsViewMode
 	self.imgSrc = function(index){
 
 		if(index % 2 == 0){
-			return "images/small_bar_chart.svg";
+			return "images/small_bar_chart-even.svg";
 		}else{
-			return "images/small_bar_chart-2.svg";
+			return "images/small_bar_chart-odd.svg";
 		}
 
 	};
