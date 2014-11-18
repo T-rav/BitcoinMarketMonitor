@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -43,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -56,7 +59,7 @@
        xml:space="preserve"
        id="flowRoot2985"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(-23.762376,881.22356)"><flowRegion
+       transform="translate(-23.762376,869.22356)"><flowRegion
          id="flowRegion2987"><rect
            id="rect2989"
            width="459.40594"
@@ -69,7 +72,7 @@
            id="flowSpan2993">STONE</flowSpan><flowSpan
            style="fill:#374548"
            id="flowSpan3005">AGE</flowSpan></flowPara></flowRoot>    <rect
-       style="fill:#374548;fill-opacity:0.97927462;fill-rule:nonzero;stroke:#000000;stroke-width:0.08517753;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#374548;fill-opacity:0.78612715;fill-rule:nonzero;stroke:#000000;stroke-width:0.08517753000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3007"
        width="91.107437"
        height="96.058342"
@@ -78,14 +81,14 @@
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:126.99999809%;letter-spacing:0px;word-spacing:0px;fill:#216778;fill-opacity:1;stroke:none;font-family:Sans"
-       x="289.10892"
-       y="1011.6889"
+       x="291.10892"
+       y="1003.6889"
        id="text3011"
        sodipodi:linespacing="127%"><tspan
          sodipodi:role="line"
          id="tspan3013"
-         x="289.10892"
-         y="1011.6889"
+         x="291.10892"
+         y="1003.6889"
          style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:126.99999809%;letter-spacing:0.02px;fill:#37abc8;fill-opacity:1;font-family:Segoe UI;-inkscape-font-specification:Segoe UI">Technologies</tspan></text>
   </g>
 </svg>
