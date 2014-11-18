@@ -14,8 +14,8 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="logo.svg"
-   inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\png\logo.png"
+   sodipodi:docname="logo-alt.svg"
+   inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\png\logo-alt.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -72,12 +72,12 @@
            id="flowSpan2993">STONE</flowSpan><flowSpan
            style="fill:#374548"
            id="flowSpan3005">AGE</flowSpan></flowPara></flowRoot>    <rect
-       style="fill:#374548;fill-opacity:0.78612715;fill-rule:nonzero;stroke:#000000;stroke-width:0.08517753000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:#216778;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.03793172000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3007"
-       width="91.107437"
-       height="96.058342"
-       x="17.812622"
-       y="914.63013" />
+       width="40.681675"
+       height="42.662376"
+       x="17.777979"
+       y="914.59546" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:126.99999809%;letter-spacing:0px;word-spacing:0px;fill:#216778;fill-opacity:1;stroke:none;font-family:Sans"
@@ -90,5 +90,26 @@
          x="291.10892"
          y="1003.6889"
          style="font-size:32px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:126.99999809%;letter-spacing:0.02px;fill:#37abc8;fill-opacity:1;font-family:Segoe UI;-inkscape-font-specification:Segoe UI">Technologies</tspan></text>
+    <rect
+       style="fill:#374548;fill-opacity:0.78612713;fill-rule:nonzero;stroke:#000000;stroke-width:0.03793172;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3007-1"
+       width="40.681675"
+       height="42.662376"
+       x="62.82748"
+       y="914.19934" />
+    <rect
+       style="fill:#374548;fill-opacity:0.78612713;fill-rule:nonzero;stroke:#000000;stroke-width:0.03793172;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3007-7"
+       width="40.681675"
+       height="42.662376"
+       x="18.292831"
+       y="961.7439" />
+    <rect
+       style="fill:#216778;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.03793172000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3007-4"
+       width="40.681675"
+       height="42.662376"
+       x="62.847282"
+       y="961.74384" />
   </g>
 </svg>
