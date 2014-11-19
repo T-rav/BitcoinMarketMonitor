@@ -16,7 +16,10 @@
    id="svg3951"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="feature_graphic.svg">
+   sodipodi:docname="feature_graphic.svg"
+   inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\png\feature_graphic.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs3953">
     <pattern
@@ -180,8 +183,8 @@
      showgrid="true"
      inkscape:window-width="1464"
      inkscape:window-height="805"
-     inkscape:window-x="2160"
-     inkscape:window-y="73"
+     inkscape:window-x="2252"
+     inkscape:window-y="70"
      inkscape:window-maximized="0"
      objecttolerance="10000"
      guidetolerance="10000" />
@@ -270,7 +273,92 @@
        height="225"
        x="86"
        y="128" />
-  </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2985"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="matrix(0.49608773,0,0,0.48497627,643.22465,382.67657)"><flowRegion
+         id="flowRegion2987"><rect
+           id="rect2989"
+           width="459.40594"
+           height="81.188118"
+           x="149.50494"
+           y="43.316833" /></flowRegion><flowPara
+         id="flowPara2991"
+         style="font-size:64px"><flowSpan
+           style="font-size:64px;font-weight:bold;fill:#216778;-inkscape-font-specification:Sans Bold"
+           id="flowSpan2993">STONE</flowSpan><flowSpan
+           style="fill:#374548"
+           id="flowSpan3005">AGE</flowSpan></flowPara></flowRoot>    <rect
+       style="fill:#216778;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.01860553;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3007"
+       width="20.181679"
+       height="20.690241"
+       x="663.83228"
+       y="404.68088" />
+    <text
+       xml:space="preserve"
+       style="font-size:19.62002182px;font-style:normal;font-weight:normal;line-height:126.99999809%;letter-spacing:0px;word-spacing:0px;fill:#216778;fill-opacity:1;stroke:none;font-family:Sans"
+       x="790.42493"
+       y="452.99088"
+       id="text3011"
+       sodipodi:linespacing="127%"
+       transform="scale(1.0113908,0.98873749)"><tspan
+         sodipodi:role="line"
+         id="tspan3013"
+         x="790.42493"
+         y="452.99088"
+         style="font-size:15.69601727px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:126.99999809%;letter-spacing:0.00981001px;fill:#37abc8;fill-opacity:1;font-family:Segoe UI;-inkscape-font-specification:Segoe UI">Technologies</tspan></text>
+    <rect
+       style="fill:#374548;fill-opacity:0.78612713;fill-rule:nonzero;stroke:#000000;stroke-width:0.01860553;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3007-1"
+       width="20.181679"
+       height="20.690241"
+       x="686.18085"
+       y="404.48877" />
+    <rect
+       style="fill:#374548;fill-opacity:0.78612713;fill-rule:nonzero;stroke:#000000;stroke-width:0.01860553;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3007-7"
+       width="20.181679"
+       height="20.690241"
+       x="664.08771"
+       y="427.54675" />
+    <rect
+       style="fill:#216778;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.01860553;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="rect3007-4"
+       width="20.181679"
+       height="20.690241"
+       x="686.19061"
+       y="427.54672" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3044"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(4,-150)"><flowRegion
+         id="flowRegion3046"><rect
+           id="rect3048"
+           width="444"
+           height="222"
+           x="540"
+           y="254" /></flowRegion><flowPara
+         id="flowPara3050"
+         style="font-size:64px;text-align:center;text-anchor:middle;fill:#374548">Crypto Stats</flowPara><flowPara
+         id="flowPara3052"
+         style="font-size:28px;font-style:italic;text-align:center;text-anchor:middle;fill:#666666">Your #1 source for </flowPara><flowPara
+         style="font-size:28px;font-style:italic;text-align:center;text-anchor:middle;fill:#666666"
+         id="flowPara3054">Bitcoin prices and news</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3062"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(-19,114)"><flowRegion
+         id="flowRegion3064"><rect
+           id="rect3066"
+           width="242"
+           height="77"
+           x="682"
+           y="261" /></flowRegion><flowPara
+         id="flowPara3068"
+         style="font-size:18px;fill:#808080">Brought to you by</flowPara></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="layer10"
