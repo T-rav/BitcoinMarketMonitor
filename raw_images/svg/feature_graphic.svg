@@ -196,7 +196,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -277,7 +277,10 @@
        xml:space="preserve"
        id="flowRoot2985"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="matrix(0.49608773,0,0,0.48497627,643.22465,382.67657)"><flowRegion
+       transform="matrix(0.49608773,0,0,0.48497627,691.22465,386.67657)"
+       inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\svg\flowRoot3062.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
          id="flowRegion2987"><rect
            id="rect2989"
            width="459.40594"
@@ -294,42 +297,57 @@
        id="rect3007"
        width="20.181679"
        height="20.690241"
-       x="663.83228"
-       y="404.68088" />
+       x="711.83228"
+       y="408.68088"
+       inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\svg\flowRoot3062.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-size:19.62002182px;font-style:normal;font-weight:normal;line-height:126.99999809%;letter-spacing:0px;word-spacing:0px;fill:#216778;fill-opacity:1;stroke:none;font-family:Sans"
-       x="790.42493"
-       y="452.99088"
+       x="837.8844"
+       y="457.03647"
        id="text3011"
        sodipodi:linespacing="127%"
-       transform="scale(1.0113908,0.98873749)"><tspan
+       transform="scale(1.0113908,0.98873749)"
+       inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\svg\flowRoot3062.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3013"
-         x="790.42493"
-         y="452.99088"
+         x="837.8844"
+         y="457.03647"
          style="font-size:15.69601727px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:126.99999809%;letter-spacing:0.00981001px;fill:#37abc8;fill-opacity:1;font-family:Segoe UI;-inkscape-font-specification:Segoe UI">Technologies</tspan></text>
     <rect
        style="fill:#374548;fill-opacity:0.78612713;fill-rule:nonzero;stroke:#000000;stroke-width:0.01860553;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3007-1"
        width="20.181679"
        height="20.690241"
-       x="686.18085"
-       y="404.48877" />
+       x="734.18085"
+       y="408.48877"
+       inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\svg\flowRoot3062.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="fill:#374548;fill-opacity:0.78612713;fill-rule:nonzero;stroke:#000000;stroke-width:0.01860553;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3007-7"
        width="20.181679"
        height="20.690241"
-       x="664.08771"
-       y="427.54675" />
+       x="712.08771"
+       y="431.54675"
+       inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\svg\flowRoot3062.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="fill:#216778;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.01860553;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3007-4"
        width="20.181679"
        height="20.690241"
-       x="686.19061"
-       y="427.54672" />
+       x="734.19061"
+       y="431.54672"
+       inkscape:export-filename="F:\Systems\Tinkering\BitcoinMarketMonitor\raw_images\svg\flowRoot3062.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot3044"
@@ -350,7 +368,9 @@
        xml:space="preserve"
        id="flowRoot3062"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(-19,114)"><flowRegion
+       transform="translate(29,118)"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><flowRegion
          id="flowRegion3064"><rect
            id="rect3066"
            width="242"
