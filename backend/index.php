@@ -121,12 +121,14 @@
 				// set data direction ;)
 				$directionDiff = $value["close"] - $value["avg"];
 
-				if($directionDiff < 0){
-					$value["direction"] = "up";	
-				}else if($directionDiff > 0){
-					$value["direction"] = "down";
-				}else{
+				if($value["currency_volume"] == 0){
 					$value["direction"] = "flat";
+				}else{
+					if($directionDiff < 0){
+						$value["direction"] = "up";	
+					}else if($directionDiff > 0){
+						$value["direction"] = "down";
+					}	
 				}
 
 				//if($value["avg"] > 0){
