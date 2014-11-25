@@ -97,7 +97,7 @@
 			if(!array_key_exists($key, $result)){
 				$result[$key] = array();
 			}
-
+			
 			$lastTradeTS = $value["latest_trade"];
 			$currentTS = time();
 			
@@ -108,6 +108,14 @@
 				// // avg, currency_volume
 				if($value["avg"] == null){
 					$value["avg"] = 0;
+				}
+				
+				if($value["close"] == null){
+					$value["close"] = 0;
+				}
+				
+				if($value["ask"] == null){
+					$value["ask"] = 0;
 				}
 
 				// set data direction ;)
@@ -121,7 +129,7 @@
 					$value["direction"] = "flat";
 				}
 
-				if($value["avg"] > 0){
+				//if($value["avg"] > 0){
 					$value["avg"] = round($value["avg"], 2);
 					$value["volume"] = round($value["volume"], 1);
 					$value["ask"] = round($value["ask"],2);
@@ -130,7 +138,7 @@
 					$value["symbol"] = str_replace($key, "", $value["symbol"]);
 					$value["lastTradeMinutes"] = round($lastTradeMinutes,2);
 					$result[$key][] = $value;
-				}
+				//}
 
 			}
 		}
@@ -191,8 +199,8 @@
 			return true;
 		}
 		
-		//return true;
-		return false;
+		return true;
+		//return false;
 	}
 
 
