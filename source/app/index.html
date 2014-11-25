@@ -147,8 +147,12 @@
 	
 	<!-- Market View -->
 	<div id="market" class="settings-container collapse">
-		<header class="app-bar promote-layer" style="margin-left:10px;">
-			<h4>Exchange: <strong data-bind="text: symbol"></strong></h4>
+		<header class="app-bar promote-layer marketHeadline">
+			<br/>
+			<h4 data-bind="click: closeMarketView">
+				<span><img src="images/chevron.svg" height="25" width="20" /></span> 
+				Exchange: <strong data-bind="text: symbol"></strong>
+			</h4>
 			<hr/>
 		</header>
 		<div style="margin-left:10px;">
@@ -186,11 +190,6 @@
 			<div>
 				Graphs to go here ;)
 			</div-->
-			<div  class="form-group" style="margin-top:25px;">
-			  <div class="col-lg-10 col-lg-offset-2">
-				<button type="submit" class="btn btn-primary" style="float:right;" data-bind="click: closeMarketView">Ok</button>
-			  </div>
-			</div>
 		</div>
 	</div>
 	
