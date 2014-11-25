@@ -9,7 +9,7 @@
 		self.addHeadline = function(story){
 			try{
 				var summary = story.description + " ...";
-				self.headline().push({title : story.title, summary: summary, link : story.guid, pubDate : story.pupDate});	
+				self.headline().push({title : story.title, summary: summary, link : story.guid, pubDate : story.pupDate, sourceIcon: story.sourceIcon});	
 			}catch(e){
 				console.log(e);
 			}
@@ -68,5 +68,26 @@
 			    function() {alert("Failed to open URL [ " + link + " ]")}
 			);
 			*/
+		};
+
+		self.sourceIcon = function(link){
+
+			var value = link.toLowerCase();
+			// cryptocoinsnews
+			// CoinDesk
+			// BitcoinMagazine
+			// Generic
+
+			var img = "images/";
+
+			if(value.indexOf("cryptocoinsnews") > 0){
+				return img+"icon-cryptocoin-newsletter.png";
+			}else if(value.indexOf("coindesk") > 0){
+				return img+"icon-coindesk-square.png";
+			}else if(value.indexOf("bitcoinmagazine") > 0){
+				return img+"icon-bitcoin-magazine.png";
+			}else{
+				return img+"icon-generic.png";
+			}
 		};
 	}

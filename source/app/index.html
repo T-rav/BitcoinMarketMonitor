@@ -229,8 +229,8 @@
     </div>
 	
 	<!-- News Region -->
-	<div id="newsRegion" class="settings-container collapse">
-		<header class="app-bar promote-layer" style="margin-left:0px; margin-top:-10px; background-color:#52ADC8;">
+	<div id="newsRegion" class="news-container collapse">
+		<header class="app-bar promote-layer newsHeadline">
 			<br/>
 			<h4 data-toggle="collapse" data-target="#newsRegion">
 				<span><img src="images/chevron.svg" height="25" width="20" /></span> 
@@ -241,9 +241,9 @@
 		<div class="list-group newsWrapper" data-bind="foreach:headline">
 			<!-- attr: { href: link }  -->
 			<a href="#" class="list-group-item" data-bind="click: $parent.openLink, css: { oddHeadline: $parent.isOddRow($index()), evenHeadline: !$parent.isOddRow($index()) }" style="width:100%; margin-left:1px;">
-				<b class="list-group-item-heading" data-bind="text: title"></b>
+				<img data-bind="attr:{src: $parent.sourceIcon(link) }" width="13" height="15" style="margin-top:-3px;"/> &nbsp; <u class="list-group-item-heading" data-bind="text: pubDate"></u>
 				<br/>
-				<u class="list-group-item-heading" data-bind="text: pubDate"></u>
+				<b class="list-group-item-heading" data-bind="text: title"></b>
 				<br/>
 				<span style="font-size:12px;" data-bind="text: summary"></span>
 				<br/>
@@ -251,10 +251,10 @@
 				<!-- https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin -->
 				<!-- Place this tag in your head or just before your close body tag. -->
 
-				<i class="fa fa-2x fa-google-plus-square" data-bind="click: function(data, event) { $parent.social('gplus', data, event); }"></i> &nbsp;
-				<i class="fa fa-2x fa-linkedin-square" data-bind="click: function(data, event) { $parent.social('linkedin', data, event); }"></i> &nbsp;
-				<!--<i class="fa fa-2x fa-twitter-square" data-bind="click: function(data, event) { $parent.social('twitter', data, event); }"></i> &nbsp;-->
-				<i class="fa fa-2x fa-facebook-square" data-bind="click: function(data, event) { $parent.social('facebook', data, event); }"></i>
+				<i class="fa fa-15x fa-google-plus-square" data-bind="click: function(data, event) { $parent.social('gplus', data, event); }"></i> &nbsp;
+				<i class="fa fa-15x fa-linkedin-square" data-bind="click: function(data, event) { $parent.social('linkedin', data, event); }"></i> &nbsp;
+				<!--<i class="fa fa-15x fa-twitter-square" data-bind="click: function(data, event) { $parent.social('twitter', data, event); }"></i> &nbsp;-->
+				<i class="fa fa-15x fa-facebook-square" data-bind="click: function(data, event) { $parent.social('facebook', data, event); }"></i>
 			</a>
 		</div>
     </div>

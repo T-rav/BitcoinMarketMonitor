@@ -72,7 +72,7 @@
 			$link = (string)$item->link;
 			$guid = (string)$item->guid;
 			
-			$pubDate = (string)str_replace(" +0000", " GMT",$item->pubDate);
+			$pubDate = (string)str_replace(" +0000", "",$item->pubDate);
 			$pubDate = pruneOutDate($pubDate);
 
 			$description = pruneDescription((string)$item->description);
