@@ -65,20 +65,16 @@
 	// USD = 2, 
 	
 	// BEST SRC : https://www.quandl.com/c/markets/bitcoin-data
-	//if(updateCache()){
 		
-		$data = fetchData();
+	$data = fetchMarketData();
 
-		// TODO : make it more meaningful
-		$convertedData = convertFromJson($data);
-		$result = buildCache($convertedData);
-		
-		$returnData = convertToJson($result);
-		$data = convertToJson($result);
-		//writeCacheData($returnData);
-	//}
+	// TODO : make it more meaningful
+	$convertedData = convertFromJson($data);
+	$result = buildCache($convertedData);
+	
+	$returnData = convertToJson($result);
+	$data = convertToJson($result);
 
-	//$data = readCacheData();
 	if($jqueryFormat){
 		header('Content-Type:application/x-javascript');
 		$fnName = $_GET['jsoncallback'];
@@ -106,19 +102,9 @@
 			$lastTradeMinutes = ($currentTS - $lastTradeTS)/60;
 			// 1 week activity 
 			if($diff <= 168){
-				// // avg, currency_volume
-				if($value["avg"] == null){
-					$value["avg"] = 0;
-				}
 				
-				if($value["close"] == null){
-					$value["close"] = 0;
-				}
+				correctData(&$value);
 				
-				if($value["ask"] == null){
-					$value["ask"] = 0;
-				}
-
 				// set data direction ;)
 				$directionDiff = $value["close"] - $value["avg"];
 
@@ -132,16 +118,14 @@
 					}	
 				}
 
-				//if($value["avg"] > 0){
-					$value["avg"] = round($value["avg"], 2);
-					$value["volume"] = round($value["volume"], 1);
-					$value["ask"] = round($value["ask"],2);
-					$value["bid"] = round($value["bid"],2);
-					$value["close"] = round($value["close"],2);
-					$value["symbol"] = str_replace($key, "", $value["symbol"]);
-					$value["lastTradeMinutes"] = round($lastTradeMinutes,2);
-					$result[$key][] = $value;
-				//}
+				$value["avg"] = round($value["avg"], 2);
+				$value["volume"] = round($value["volume"], 1);
+				$value["ask"] = round($value["ask"],2);
+				$value["bid"] = round($value["bid"],2);
+				$value["close"] = round($value["close"],2);
+				$value["symbol"] = str_replace($key, "", $value["symbol"]);
+				$value["lastTradeMinutes"] = round($lastTradeMinutes,2);
+				$result[$key][] = $value;
 
 			}
 		}
@@ -154,6 +138,22 @@
 		}
 		
 		return $result;
+	}
+	
+	function correctData($value){
+		// // avg, currency_volume
+		if($value["avg"] == null){
+			$value["avg"] = 0;
+		}
+		
+		if($value["close"] == null){
+			$value["close"] = 0;
+		}
+		
+		if($value["ask"] == null){
+			$value["ask"] = 0;
+		}
+
 	}
 	
 	function sortData($a, $b){
@@ -175,42 +175,27 @@
 		return json_encode($dataToDump, true);
 	}
 	
-	function readCacheData(){
-		$fileName = "cache/data.json";
-		$myfile = fopen($fileName, "r") or die("Unable to open file!");
-		$data = fread($myfile,filesize($fileName));
-		fclose($myfile);
-		return $data;
-	}
+	// TODO : Fetch and cache into document store ;)
 	
-	function writeCacheData($jsonData){
-	
-		$file = fopen("cache/data.json","w");
-		fwrite($file,$jsonData);
-		fclose($file);
-	}
-	
-	function updateCache(){
-		$fileName = "cache/data.json";
-		$interval = (time() - (60 * 5));
-				
-		if(!file_exists($fileName)){
-			return true;
-		}
-		
-		if(filemtime($fileName) > $interval){
-			return true;
-		}
-		
-		return true;
-		//return false;
-	}
-
-
-	function fetchData(){
+	function fetchMarketData(){
 	
 		$url = "http://api.bitcoincharts.com/v1/markets.json";
+		return fetchData($url);
+	}
 	
+	function fetchMarketCapData(){
+
+		$url = "http://coinmarketcap.northpole.ro/api/v5/BTC.json";
+		return fetchData($url);
+	}
+	
+	function fetchCurrencyConversionData(){
+
+		$url = "http://rate-exchange.appspot.com/currency?from=USD&to=EUR";
+		return fetchData($url);
+	}
+	
+	function fetchData($url){
 		$data = file_get_contents($url);
 	
 		return $data;
