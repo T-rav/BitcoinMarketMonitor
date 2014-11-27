@@ -65,7 +65,7 @@
 	// USD = 2, 
 	
 	// BEST SRC : https://www.quandl.com/c/markets/bitcoin-data
-	if(updateCache()){
+	//if(updateCache()){
 		
 		$data = fetchData();
 
@@ -74,10 +74,11 @@
 		$result = buildCache($convertedData);
 		
 		$returnData = convertToJson($result);
-		writeCacheData($returnData);
-	}
+		$data = convertToJson($result);
+		//writeCacheData($returnData);
+	//}
 
-	$data = readCacheData();
+	//$data = readCacheData();
 	if($jqueryFormat){
 		header('Content-Type:application/x-javascript');
 		$fnName = $_GET['jsoncallback'];
