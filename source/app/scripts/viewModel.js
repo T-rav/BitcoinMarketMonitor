@@ -176,4 +176,9 @@ function ViewModel(viewService, settingsViewModel, marketViewModel, newsViewMode
 		}
 
 	};
+
+	self.bugReport = function(){
+		var link = "http://goo.gl/forms/h0QbQlHhNB";
+		webHelper.openUrl(link);
+	}
 }

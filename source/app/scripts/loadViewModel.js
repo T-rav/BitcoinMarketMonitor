@@ -22,6 +22,6 @@
 				messageModel.message(self.messages[self.messageCount]);
 				self.messageCount++;
 			}
-		}
+		};
 	}
 		
