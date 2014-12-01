@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- 1.0.4 - Last relase without news -->
 <!-- 1.1.0 - First release with news -->
-<widget id="com.kungfuactiongrip.btcmarketmonitor" version="1.1.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.kungfuactiongrip.btcmarketmonitor" version="1.1.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Crypto Stats</name>
     <description>
         An application to monitor BTC exchanges around the world.
