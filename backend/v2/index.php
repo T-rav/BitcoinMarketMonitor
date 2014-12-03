@@ -73,7 +73,8 @@
 
 	// TODO : make it more meaningful
 	$convertedData = convertFromJson($data);
-	$result = buildCache($convertedData);
+	$result["marketData"] = buildCache($convertedData);
+	$result["marketCap"] = buildMarketCapData();
 	
 	$data = convertToJson($result);
 
@@ -87,6 +88,25 @@
 	}	
 	
 	// --- END	
+
+
+	
+	function buildMarketCapData(){
+		
+		$raw = fetchMarketCapData();
+		$data = convertFromJson($raw);
+		$result = array();
+
+		$result["change"] = $data["change"];
+		$result["priceUSD"] = $data["price"]["usd"];
+		$result["volumeUSD"] = $data["volume"]["usd"];
+		$result["volumeBTC"] = $data["volume"]["btc"];
+
+		return convertToJson($result);
+
+	}
+
+
 	function buildCache($data){
 		$result = array();
 		
@@ -178,7 +198,7 @@
 	}
 	
 	// TODO : Fetch and cache into document store ;)
-	
+
 	function fetchMarketData(){
 	
 		$url = "http://api.bitcoincharts.com/v1/markets.json";
@@ -187,7 +207,7 @@
 	
 	function fetchMarketCapData(){
 
-		$url = "http://coinmarketcap.northpole.ro/api/v5/BTC.json";
+		$url = "http://coinmarketcap-nexuist.rhcloud.com/api/btc";
 		return fetchData($url);
 	}
 	

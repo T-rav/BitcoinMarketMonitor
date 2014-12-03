@@ -80,18 +80,19 @@ function ViewService(){
 
 	self.fetchData = function(init, viewModel, settingsViewModel){
 		$.ajax({
-			url : "http://stoneagetechnologies.com/bitcoincharts/?jsoncallback=?",
+			url : "http://stoneagetechnologies.com/bitcoincharts/v2/?jsoncallback=?",
 			dataType : "jsonp",
 			crossDomain : true,
 			async: true,
 			success : function(data){
-				self.setRawData(data);
-				viewModel.data = data;
+				var marketData = data["marketData"];
+				self.setRawData(marketData);
+				viewModel.data = marketData;
 
 				if(init || viewModel.fiatCurrency().length === 0){
 					var currencyList = self.fetchCurrencyList();
 					var loadCurrency = self.fetchDefaultCurrency();
-					self.initModel(data, currencyList, loadCurrency, settingsViewModel, viewModel);
+					self.initModel(marketData, currencyList, loadCurrency, settingsViewModel, viewModel);
 					
 				}else{
 					// TODO : Abstract to event that is triggered 
