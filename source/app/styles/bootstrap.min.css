@@ -24,7 +24,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 /* background-color:#406082; */
 .evenHeadline{color:#ffffff; border-left: 2px solid #DF691A; border-bottom: 2px solid #999;}
 .tableWrapper{position:fixed;top:120px;bottom:30px;left:5px;font-size:13px;width:98%;overflow-y:scroll;overflow-x:hidden;}
-.newsWrapper{position:fixed;top:68px;bottom:-10px;font-size:13px;width:101%;overflow-y:scroll;overflow-x:hidden;}
+.newsWrapper{position:fixed;top:68px;bottom:-20px;font-size:13px;width:101%;overflow-y:scroll;overflow-x:hidden;}
 .headerWrapper{position:fixed;top:70px;height:50px;width:98%;}
 .tableContainer{width:98%;}
 .marketLeft{float:left;width:48%;}
