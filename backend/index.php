@@ -69,6 +69,7 @@
 	$data = fetchMarketData();
 	
 	// CRYPTSY : http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=2
+	// CEX.IO : https://cex.io/api/last_price/BTC/USD
 
 	// TODO : make it more meaningful
 	$convertedData = convertFromJson($data);
