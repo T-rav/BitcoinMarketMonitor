@@ -67,6 +67,8 @@
 	// BEST SRC : https://www.quandl.com/c/markets/bitcoin-data
 		
 	$data = fetchMarketData();
+	
+	// CRYPTSY : http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=2
 
 	// TODO : make it more meaningful
 	$convertedData = convertFromJson($data);
