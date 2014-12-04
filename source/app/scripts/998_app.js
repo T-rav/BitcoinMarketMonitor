@@ -18,7 +18,7 @@
             // register routing engine ;)
 			var self = this;
 			document.addEventListener('click', function(){self.routingEngine(event);}, false);
-            self.handleBackButton();
+            //self.handleBackButton();
         },
         bootstrap : function(){
 
