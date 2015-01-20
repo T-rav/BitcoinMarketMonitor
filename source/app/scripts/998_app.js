@@ -13,6 +13,7 @@
             var loadScreenInterval = 500;
 
             this.fixBottomMenuItemsForSmallerScreens();
+			this.scheduleDailyReminder();
             this.slashScreen(isDevEnv,loadScreenTTL, loadScreenInterval);
 		    this.bootstrap();	
             // register routing engine ;)
@@ -43,6 +44,19 @@
             this.bindApp(settingsViewModel, marketViewModel, newsViewModel, viewModel);
 
         },
+		scheduleDailyReminder:function(){
+			var tomorrowAt = new Date();
+			tomorrowAt.setMinutes(0);
+			tomorrowAt.setHours(8);
+
+			window.plugin.notification.local.add({
+				title:   'Crypto Stats',
+				message: 'Bitcoin Market Update',
+				repeat:  'daily',
+				date:    tomorrowAt,
+				autoCancel: true
+			});
+		},
         bindLoader:function(message, loadViewModel){
             setInterval(function(){loadViewModel.update(message);}, 400);
             ko.applyBindings(message, document.getElementById("load"));
