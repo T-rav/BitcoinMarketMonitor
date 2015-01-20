@@ -13,37 +13,13 @@ module.exports = [
         "clobbers": [
             "plugins.appPreferences"
         ]
-    },
-    {
-        "file": "plugins/de.appplant.cordova.plugin.local-notification/www/local-notification.js",
-        "id": "de.appplant.cordova.plugin.local-notification.LocalNotification",
-        "clobbers": [
-            "plugin.notification.local"
-        ]
-    },
-    {
-        "file": "plugins/com.google.cordova.admob/www/AdMob.js",
-        "id": "com.google.cordova.admob.AdMob",
-        "clobbers": [
-            "window.AdMob"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.device/www/device.js",
-        "id": "org.apache.cordova.device.device",
-        "clobbers": [
-            "device"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "com.borismus.webintent": "1.0.0",
-    "me.apla.cordova.app-preferences": "0.4.2",
-    "de.appplant.cordova.plugin.local-notification": "0.7.8",
-    "com.google.cordova.admob": "2.3.2",
-    "org.apache.cordova.device": "0.2.12"
+    "me.apla.cordova.app-preferences": "0.4.2"
 }
 // BOTTOM OF METADATA
 });
