@@ -16,8 +16,8 @@
             this.slashScreen(isDevEnv,loadScreenTTL, loadScreenInterval);
 		    this.bootstrap();	
             // register routing engine ;)
-			var self = this;
-			document.addEventListener('click', function(){self.routingEngine(event);}, false);
+			//var self = this;
+			//document.addEventListener('click', function(){self.routingEngine(event);}, false);
             self.handleBackButton();
         },
         bootstrap : function(){
